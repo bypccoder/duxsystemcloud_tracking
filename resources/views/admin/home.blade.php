@@ -39,7 +39,9 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ url('assets') }}/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="{{ url('assets') }}/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="{{ url('assets') }}/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="{{ url('assets') }}/libs/datatables-bs5/datatables.bootstrap5.css" />
+    <link rel="stylesheet" href="{{ url('assets') }}/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="{{ url('assets') }}/libs/flatpickr/flatpickr.css" />
 
     <!-- Page CSS -->
 
@@ -82,7 +84,7 @@
                                                 <div
                                                     class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="{{url('assets')}}/img/icons/unicons/community.png"
+                                                        <img src="{{ url('assets') }}/img/icons/unicons/community.png"
                                                             alt="Credit Card" class="rounded" />
                                                     </div>
                                                 </div>
@@ -97,7 +99,7 @@
                                                 <div
                                                     class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="{{url('assets')}}/img/icons/unicons/community.png"
+                                                        <img src="{{ url('assets') }}/img/icons/unicons/community.png"
                                                             alt="Credit Card" class="rounded" />
                                                     </div>
                                                 </div>
@@ -112,13 +114,179 @@
                                                 <div
                                                     class="card-title d-flex align-items-start justify-content-between">
                                                     <div class="avatar flex-shrink-0">
-                                                        <img src="{{url('assets')}}/img/icons/unicons/community.png"
+                                                        <img src="{{ url('assets') }}/img/icons/unicons/community.png"
                                                             alt="Credit Card" class="rounded" />
                                                     </div>
                                                 </div>
                                                 <span>Rechazados</span>
                                                 <h3 class="card-title text-nowrap mb-1">15300</h3>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <h6 class="text-muted">Filled Pills</h6>
+                                <div class="nav-align-top mb-4">
+                                    <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link active" role="tab"
+                                                data-bs-toggle="tab" data-bs-target="#navs-pills-justified-nuevos"
+                                                aria-controls="navs-pills-justified-home" aria-selected="true">
+                                                <i class="tf-icons bx bx-bar-chart-alt-2 fa-2x me-1"></i> Nuevos
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
+                                                data-bs-target="#navs-pills-justified-agendados"
+                                                aria-controls="navs-pills-justified-profile" aria-selected="false">
+                                                <i class="tf-icons  bx bx-sort-alt-2 fa-2x me-1"></i> Agendados
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab"
+                                                data-bs-toggle="tab"
+                                                data-bs-target="#navs-pills-justified-reprogramacion"
+                                                aria-controls="navs-pills-justified-messages" aria-selected="false">
+                                                <i class="tf-icons bx bx-cog fa-2x me-1"></i> Reprogramación
+                                            </button>
+                                        </li>
+                                        <li class="nav-item">
+                                            <button type="button" class="nav-link" role="tab"
+                                                data-bs-toggle="tab" data-bs-target="#navs-pills-justified-rechazados"
+                                                aria-controls="navs-pills-justified-messages" aria-selected="false">
+                                                <i class="tf-icons bx bx-shield-x fa-2x me-1"></i> Rechazados
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="navs-pills-justified-nuevos"
+                                            role="tabpanel">
+                                            <p>
+                                            <div class="card">
+                                                <h5 class="card-header">Busqueda Avanzada</h5>
+                                                <!--Search Form -->
+                                                <div class="card-body">
+                                                    <form class="dt_adv_search" method="POST">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row g-3">
+                                                                    <div class="col-4 col-sm-6 col-lg-4">
+                                                                        <label class="form-label">Fecha:</label>
+                                                                        <div class="mb-0">
+                                                                            <input type="text"
+                                                                                class="form-control dt-date flatpickr-range dt-input"
+                                                                                data-column="5"
+                                                                                placeholder="StartDate to EndDate"
+                                                                                data-column-index="4" name="dt_date" />
+                                                                            <input type="hidden"
+                                                                                class="form-control dt-date start_date dt-input"
+                                                                                data-column="5" data-column-index="4"
+                                                                                name="value_from_start_date" />
+                                                                            <input type="hidden"
+                                                                                class="form-control dt-date end_date dt-input"
+                                                                                name="value_from_end_date" data-column="5"
+                                                                                data-column-index="4" />
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-4 col-sm-6 col-lg-4">
+                                                                        <label class="form-label">Tipo de
+                                                                            Gestión:</label>
+                                                                        <input type="text"
+                                                                            class="form-control dt-input dt-full-name"
+                                                                            data-column="1"
+                                                                            placeholder="Alaric Beslier"
+                                                                            data-column-index="0" />
+                                                                    </div>
+                                                                    <div class="col-4 col-sm-6 col-lg-4">
+                                                                        <label class="form-label">Motorizado:</label>
+                                                                        <input type="text"
+                                                                            class="form-control dt-input"
+                                                                            data-column="2"
+                                                                            placeholder="demo@example.com"
+                                                                            data-column-index="1" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <hr class="mt-0" />
+                                                <div class="card-datatable table-responsive">
+                                                    <table id="tbl_Nuevos" class="table border-top">
+                                                        <thead>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Name</th>
+                                                                <th>Email</th>
+                                                                <th>Post</th>
+                                                                <th>City</th>
+                                                                <th>Date</th>
+                                                                <th>Salary</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tfoot>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>Name</th>
+                                                                <th>Email</th>
+                                                                <th>Post</th>
+                                                                <th>City</th>
+                                                                <th>Date</th>
+                                                                <th>Salary</th>
+                                                            </tr>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane fade" id="navs-pills-justified-agendados" role="tabpanel">
+                                            <p>
+                                                Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer
+                                                candy oat cake ice
+                                                cream. Gummies halvah tootsie roll muffin biscuit icing dessert
+                                                gingerbread. Pastry ice cream
+                                                cheesecake fruitcake.
+                                            </p>
+                                            <p class="mb-0">
+                                                Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin
+                                                pie tiramisu halvah
+                                                cotton candy liquorice caramels.
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane fade" id="navs-pills-justified-reprogramacion"
+                                            role="tabpanel">
+                                            <p>
+                                                Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans
+                                                macaroon gummies
+                                                cupcake gummi bears cake chocolate.
+                                            </p>
+                                            <p class="mb-0">
+                                                Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple
+                                                pie brownie cake. Sweet
+                                                roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert
+                                                dessert. Pudding jelly
+                                                jelly-o tart brownie jelly.
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane fade" id="navs-pills-justified-rechazados"
+                                            role="tabpanel">
+                                            <p>
+                                                Oat cake chupa chups dragée donut toffee. Sweet cotton candy jelly beans
+                                                macaroon gummies
+                                                cupcake gummi bears cake chocolate.
+                                            </p>
+                                            <p class="mb-0">
+                                                Cake chocolate bar cotton candy apple pie tootsie roll ice cream apple
+                                                pie brownie cake. Sweet
+                                                roll icing sesame snaps caramels danish toffee. Brownie biscuit dessert
+                                                dessert. Pudding jelly
+                                                jelly-o tart brownie jelly.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -161,13 +329,78 @@
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="{{ url('assets') }}/libs/apex-charts/apexcharts.js"></script>
+    <script src="{{ url('assets') }}/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+
+     <!-- Flat Picker -->
+     <script src="{{ url('assets') }}/vendor/libs/moment/moment.js"></script>
+     <script src="{{ url('assets') }}/libs/flatpickr/flatpickr.js"></script>
 
     <!-- Main JS -->
     <script src="{{ url('assets') }}/js/main.js"></script>
 
     <!-- Page JS -->
     <script src="{{ url('assets') }}/js/dashboards-analytics.js"></script>
+    <script src="{{ url('assets') }}/js/tables-datatables-advanced.js"></script>
+    <script>
+        var dt_adv_filter_table = $('#tbl_Nuevos')
+        var dt_adv_filter = dt_adv_filter_table.DataTable({
+      dom: "<'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6 dataTables_pager'p>>",
+      ajax: assetsPath + 'json/table-datatable.json',
+      columns: [
+        { data: '' },
+        { data: 'full_name' },
+        { data: 'email' },
+        { data: 'post' },
+        { data: 'city' },
+        { data: 'start_date' },
+        { data: 'salary' }
+      ],
+
+      columnDefs: [
+        {
+          className: 'control',
+          orderable: false,
+          targets: 0,
+          render: function (data, type, full, meta) {
+            return '';
+          }
+        }
+      ],
+      orderCellsTop: true,
+      responsive: {
+        details: {
+          display: $.fn.dataTable.Responsive.display.modal({
+            header: function (row) {
+              var data = row.data();
+              return 'Details of ' + data['full_name'];
+            }
+          }),
+          type: 'column',
+          renderer: function (api, rowIdx, columns) {
+            var data = $.map(columns, function (col, i) {
+              return col.title !== '' // ? Do not show row in modal popup if title is blank (for check box)
+                ? '<tr data-dt-row="' +
+                    col.rowIndex +
+                    '" data-dt-column="' +
+                    col.columnIndex +
+                    '">' +
+                    '<td>' +
+                    col.title +
+                    ':' +
+                    '</td> ' +
+                    '<td>' +
+                    col.data +
+                    '</td>' +
+                    '</tr>'
+                : '';
+            }).join('');
+
+            return data ? $('<table class="table"/><tbody />').append(data) : false;
+          }
+        }
+      }
+    });
+    </script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@
             <script>
                 document.write(new Date().getFullYear());
             </script>
-            , made with ❤️ by
+            , by
             <a href="javascript:void(0)" target="_blank" class="footer-link fw-medium">SystemCloud</a>
         </div>
     </div>

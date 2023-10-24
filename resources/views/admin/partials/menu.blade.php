@@ -31,7 +31,7 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link text-center">
                 <div class="menu-icon-large">
-                    <i class="menu-icon tf-icons bx bx-layout fa-2x"></i>
+                    <i class="menu-icon tf-icons bx bx-sort-alt-2 fa-2x"></i>
                 </div>
                 <div class="text-truncate" data-i18n="Agendados">Agendados</div>
             </a>
@@ -40,7 +40,7 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link text-center">
                 <div class="menu-icon-large">
-                    <i class="menu-icon tf-icons bx bx-layout fa-2x"></i>
+                    <i class="menu-icon tf-icons bx bx-cog fa-2x"></i>
                 </div>
                 <div class="text-truncate" data-i18n="Reprogramados">Reprogramados</div>
             </a>
@@ -49,7 +49,7 @@
         <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link text-center">
                 <div class="menu-icon-large">
-                    <i class="menu-icon tf-icons bx bx-layout fa-2x"></i>
+                    <i class="menu-icon tf-icons bx bx-shield-x fa-2x"></i>
                 </div>
                 <div class="text-truncate" data-i18n="Rechazados">Rechazados</div>
             </a>
