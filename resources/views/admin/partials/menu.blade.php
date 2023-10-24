@@ -11,36 +11,46 @@
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item active open">
-            <a href="javascript:void(0);" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+            <a href="javascript:void(0);" class="menu-link text-center">
+                <div class="menu-icon-large">
+                    <i class="menu-icon tf-icons bx bxs-dashboard fa-2x"></i>
+                </div>
                 <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+            <a href="javascript:void(0);" class="menu-link text-center">
+                <div class="menu-icon-large">
+                    <i class="menu-icon tf-icons bx bx-bar-chart-alt-2 fa-2x"></i>
+                </div>
                 <div class="text-truncate" data-i18n="Nuevos">Nuevos</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+            <a href="javascript:void(0);" class="menu-link text-center">
+                <div class="menu-icon-large">
+                    <i class="menu-icon tf-icons bx bx-layout fa-2x"></i>
+                </div>
                 <div class="text-truncate" data-i18n="Agendados">Agendados</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-layout fa-2x"></i><br/>
+            <a href="javascript:void(0);" class="menu-link text-center">
+                <div class="menu-icon-large">
+                    <i class="menu-icon tf-icons bx bx-layout fa-2x"></i>
+                </div>
                 <div class="text-truncate" data-i18n="Reprogramados">Reprogramados</div>
             </a>
         </li>
 
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
+            <a href="javascript:void(0);" class="menu-link text-center">
+                <div class="menu-icon-large">
+                    <i class="menu-icon tf-icons bx bx-layout fa-2x"></i>
+                </div>
                 <div class="text-truncate" data-i18n="Rechazados">Rechazados</div>
             </a>
         </li>

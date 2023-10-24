@@ -18141,7 +18141,7 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
 .menu-vertical .menu-block,
 .menu-vertical .menu-inner > .menu-item,
 .menu-vertical .menu-inner > .menu-header {
-  width: 16.25rem;
+  width: 10.25rem;
 }
 .menu-vertical .menu-inner {
   flex-direction: column;
@@ -18155,7 +18155,7 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
 }
 .menu-vertical .menu-item .menu-link,
 .menu-vertical .menu-block {
-  padding: 0.625rem 1rem;
+  padding: 0.300rem 1rem;
 }
 .menu-vertical .menu-header {
   margin: 1rem 0 0.5rem 0;

@@ -6,7 +6,7 @@
                 document.write(new Date().getFullYear());
             </script>
             , made with ❤️ by
-            <a href="javascript:void(0)" target="_blank" class="footer-link fw-medium">CodeUp</a>
+            <a href="javascript:void(0)" target="_blank" class="footer-link fw-medium">SystemCloud</a>
         </div>
     </div>
 </footer>

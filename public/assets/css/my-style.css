@@ -1,0 +1,34 @@
+.menu-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px;
+    color: #333;
+}
+
+.menu-icon-large {
+    font-size: 36px;
+    color: #007BFF;
+}
+
+/* Estilo para el menú activo */
+.menu-item.active {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.bg-menu-theme .menu-inner > .menu-item.active > .menu-link,
+.bg-menu-theme .menu-inner > .menu-item.active > .menu-link i
+{
+    color: #fff !important;
+}
+
+.menu-link i{
+    font-size: 0.6em;
+}
+
+.menu-item.active a {
+    font-weight: bold;
+}
