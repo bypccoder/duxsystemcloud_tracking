@@ -7,7 +7,7 @@
             <div class="col-xl-12">
                 <h6 class="text-muted">Post-Venta</h6>
                 <div class="nav-align-top mb-4">
-                    <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
+                    <ul id="myTabTask" class="nav nav-pills mb-3 nav-fill" role="tablist">
                         <li class="nav-item">
                             <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab"
                                 data-bs-target="#navs-pills-justified-nuevos" aria-controls="navs-pills-justified-home"
@@ -18,21 +18,21 @@
                         <li class="nav-item">
                             <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                                 data-bs-target="#navs-pills-justified-agendados"
-                                aria-controls="navs-pills-justified-profile" aria-selected="false">
+                                aria-controls="navs-pills-justified-agendados" aria-selected="false">
                                 <i class="tf-icons  bx bx-sort-alt-2 fa-2x me-1"></i> Agendados
                             </button>
                         </li>
                         <li class="nav-item">
                             <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                                 data-bs-target="#navs-pills-justified-reprogramacion"
-                                aria-controls="navs-pills-justified-messages" aria-selected="false">
+                                aria-controls="navs-pills-justified-reprogramacion" aria-selected="false">
                                 <i class="tf-icons bx bx-cog fa-2x me-1"></i> Reprogramación
                             </button>
                         </li>
                         <li class="nav-item">
                             <button type="button" class="nav-link" role="tab" data-bs-toggle="tab"
                                 data-bs-target="#navs-pills-justified-rechazados"
-                                aria-controls="navs-pills-justified-messages" aria-selected="false">
+                                aria-controls="navs-pills-justified-rechazados" aria-selected="false">
                                 <i class="tf-icons bx bx-shield-x fa-2x me-1"></i> Rechazados
                             </button>
                         </li>
@@ -161,6 +161,24 @@
 
 @section('scripts')
     <script>
+        // Obtiene el valor de $tipoTab
+        const tipoTab = "{{ $tipoTab }}";
+
+        // Espera a que el documento esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            // Encuentra el elemento con el atributo data-bs-target correspondiente
+            const targetSelector = `#navs-pills-justified-${tipoTab}`;
+            const button = document.querySelector(`#myTabTask button[data-bs-target="${targetSelector}"]`);
+
+            // Activa la pestaña correspondiente
+            if (button) {
+                button.click();
+            }
+        });
+
+
+
+
         var dt_adv_filter_table = $('#tbl_Nuevos');
         var exportColumns = [3, 4]; // Columnas para exportar
 

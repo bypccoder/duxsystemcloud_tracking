@@ -14,7 +14,6 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
             <div class="col-xl-12">
-                <h6 class="text-muted">Post-Venta</h6>
                 <div class="nav-align-top mb-4">
                     <ul class="nav nav-pills mb-3 nav-fill" role="tablist">
                         <li class="nav-item">
@@ -554,6 +553,7 @@
     <script src="{{ url('assets') }}/js/app-logistics-dashboard.js"></script>
 
     <script>
+
         var dt_adv_filter_table = $('#tbl_Nuevos');
         var exportColumns = [3, 4]; // Columnas para exportar
 

@@ -19,35 +19,6 @@
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-            <!-- Language -->
-            <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
-                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                    <i class="bx bx-globe bx-sm"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="en">
-                            <span class="align-middle">English</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="fr">
-                            <span class="align-middle">French</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="de">
-                            <span class="align-middle">German</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-language="pt">
-                            <span class="align-middle">Portuguese</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <!-- /Language -->
 
             <!-- Quick links  -->
             <li class="nav-item dropdown-shortcuts navbar-dropdown dropdown me-2 me-xl-0">
@@ -58,7 +29,7 @@
                 <div class="dropdown-menu dropdown-menu-end py-0">
                     <div class="dropdown-menu-header border-bottom">
                         <div class="dropdown-header d-flex align-items-center py-3">
-                            <h5 class="text-body mb-0 me-auto">Shortcuts</h5>
+                            <h5 class="text-body mb-0 me-auto">Atajos</h5>
                             <a href="javascript:void(0)" class="dropdown-shortcuts-add text-body"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Add shortcuts"><i
                                     class="bx bx-sm bx-plus-circle"></i></a>
@@ -70,63 +41,15 @@
                                 <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
                                     <i class="bx bx-calendar fs-4"></i>
                                 </span>
-                                <a href="app-calendar.html" class="stretched-link">Calendar</a>
-                                <small class="text-muted mb-0">Appointments</small>
+                                <a href="app-calendar.html" class="stretched-link">Calendario</a>
+                                <small class="text-muted mb-0">Tareas Programadas</small>
                             </div>
                             <div class="dropdown-shortcuts-item col">
                                 <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
                                     <i class="bx bx-food-menu fs-4"></i>
                                 </span>
-                                <a href="app-invoice-list.html" class="stretched-link">Invoice App</a>
-                                <small class="text-muted mb-0">Manage Accounts</small>
-                            </div>
-                        </div>
-                        <div class="row row-bordered overflow-visible g-0">
-                            <div class="dropdown-shortcuts-item col">
-                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                    <i class="bx bx-user fs-4"></i>
-                                </span>
-                                <a href="app-user-list.html" class="stretched-link">User App</a>
-                                <small class="text-muted mb-0">Manage Users</small>
-                            </div>
-                            <div class="dropdown-shortcuts-item col">
-                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                    <i class="bx bx-check-shield fs-4"></i>
-                                </span>
-                                <a href="app-access-roles.html" class="stretched-link">Role Management</a>
-                                <small class="text-muted mb-0">Permission</small>
-                            </div>
-                        </div>
-                        <div class="row row-bordered overflow-visible g-0">
-                            <div class="dropdown-shortcuts-item col">
-                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                    <i class="bx bx-pie-chart-alt-2 fs-4"></i>
-                                </span>
-                                <a href="index.html" class="stretched-link">Dashboard</a>
-                                <small class="text-muted mb-0">User Profile</small>
-                            </div>
-                            <div class="dropdown-shortcuts-item col">
-                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                    <i class="bx bx-cog fs-4"></i>
-                                </span>
-                                <a href="pages-account-settings-account.html" class="stretched-link">Setting</a>
-                                <small class="text-muted mb-0">Account Settings</small>
-                            </div>
-                        </div>
-                        <div class="row row-bordered overflow-visible g-0">
-                            <div class="dropdown-shortcuts-item col">
-                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                    <i class="bx bx-help-circle fs-4"></i>
-                                </span>
-                                <a href="pages-faq.html" class="stretched-link">FAQs</a>
-                                <small class="text-muted mb-0">FAQs & Articles</small>
-                            </div>
-                            <div class="dropdown-shortcuts-item col">
-                                <span class="dropdown-shortcuts-icon bg-label-secondary rounded-circle mb-2">
-                                    <i class="bx bx-window-open fs-4"></i>
-                                </span>
-                                <a href="modal-examples.html" class="stretched-link">Modals</a>
-                                <small class="text-muted mb-0">Useful Popups</small>
+                                <a href="app-invoice-list.html" class="stretched-link">Usuario</a>
+                                <small class="text-muted mb-0">Crear Usuario</small>
                             </div>
                         </div>
                     </div>
@@ -142,17 +65,12 @@
                 <ul class="dropdown-menu dropdown-menu-end dropdown-styles">
                     <li>
                         <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
-                            <span class="align-middle"><i class="bx bx-sun me-2"></i>Light</span>
+                            <span class="align-middle"><i class="bx bx-sun me-2"></i>Claro</span>
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
-                            <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
-                            <span class="align-middle"><i class="bx bx-desktop me-2"></i>System</span>
+                            <span class="align-middle"><i class="bx bx-moon me-2"></i>Oscuro</span>
                         </a>
                     </li>
                 </ul>
@@ -169,7 +87,7 @@
                 <ul class="dropdown-menu dropdown-menu-end py-0">
                     <li class="dropdown-menu-header border-bottom">
                         <div class="dropdown-header d-flex align-items-center py-3">
-                            <h5 class="text-body mb-0 me-auto">Notification</h5>
+                            <h5 class="text-body mb-0 me-auto">Notificaciones</h5>
                             <a href="javascript:void(0)" class="dropdown-notifications-all text-body"
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Mark all as read"><i
                                     class="bx fs-4 bx-envelope-open"></i></a>
@@ -177,7 +95,7 @@
                     </li>
                     <li class="dropdown-notifications-list scrollable-container">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item list-group-item-action dropdown-notifications-item">
+                            {{-- <li class="list-group-item list-group-item-action dropdown-notifications-item">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar">
@@ -310,7 +228,7 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar">
-                                            <img src="../../assets/img/avatars/5.png" alt
+                                            <img src="{{ url('assets') }}/img/avatars/default.png" alt
                                                 class="w-px-40 h-auto rounded-circle" />
                                         </div>
                                     </div>
@@ -331,7 +249,7 @@
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
                                         <div class="avatar">
-                                            <img src="../../assets/img/avatars/6.png" alt
+                                            <img src="{{ url('assets') }}/img/avatars/default.png" alt
                                                 class="w-px-40 h-auto rounded-circle" />
                                         </div>
                                     </div>
@@ -369,11 +287,11 @@
                                                 class="bx bx-x"></span></a>
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="dropdown-menu-footer border-top p-3">
-                        <button class="btn btn-primary text-uppercase w-100">view all notifications</button>
+                        <button class="btn btn-primary text-uppercase w-100">Ver todas las notificaciones</button>
                     </li>
                 </ul>
             </li>
@@ -382,7 +300,7 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="{{ url('assets') }}/img/avatars/default.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -391,12 +309,12 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="../../assets/img/avatars/1.png" alt
+                                        <img src="{{ url('assets') }}/img/avatars/default.png" alt
                                             class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-medium d-block">John Doe</span>
+                                    <span class="fw-medium d-block">{{ Auth::user()->name }}</span>
                                     <small class="text-muted">Admin</small>
                                 </div>
                             </div>
@@ -408,48 +326,22 @@
                     <li>
                         <a class="dropdown-item" href="pages-profile-user.html">
                             <i class="bx bx-user me-2"></i>
-                            <span class="align-middle">My Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="pages-account-settings-account.html">
-                            <i class="bx bx-cog me-2"></i>
-                            <span class="align-middle">Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="pages-account-settings-billing.html">
-                            <span class="d-flex align-items-center align-middle">
-                                <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                                <span class="flex-grow-1 align-middle">Billing</span>
-                                <span
-                                    class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                            </span>
+                            <span class="align-middle">Mi Perfil</span>
                         </a>
                     </li>
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="pages-faq.html">
-                            <i class="bx bx-help-circle me-2"></i>
-                            <span class="align-middle">FAQ</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="pages-pricing.html">
-                            <i class="bx bx-dollar me-2"></i>
-                            <span class="align-middle">Pricing</span>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="auth-login-cover.html" target="_blank">
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
                             <i class="bx bx-power-off me-2"></i>
-                            <span class="align-middle">Log Out</span>
+                            <span class="align-middle">{{ __('Cerrar sesión') }}</span>
                         </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
             </li>
@@ -459,8 +351,8 @@
 
     <!-- Search Small Screens -->
     <div class="navbar-search-wrapper search-input-wrapper d-none">
-        <input type="text" class="form-control search-input container-xxl border-0" placeholder="Search..."
-            aria-label="Search..." />
+        <input type="text" class="form-control search-input container-xxl border-0" placeholder="Buscar..."
+            aria-label="Buscar..." />
         <i class="bx bx-x bx-sm search-toggler cursor-pointer"></i>
     </div>
 </nav>
