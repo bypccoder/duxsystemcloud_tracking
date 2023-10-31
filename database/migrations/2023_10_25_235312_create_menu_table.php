@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('data_icon', 250);
             $table->integer('position');
             $table->integer('parent_menu');
-            $table->integer('status_id');
+             $table->integer('status_id')->default(1);
             $table->integer('created by');
             $table->integer('updated_by');
             $table->timestamps();

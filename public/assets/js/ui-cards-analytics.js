@@ -28,7 +28,7 @@
     heatMap1 = '#e1e2ff';
     heatMap2 = '#c3c4ff';
     heatMap3 = '#a5a7ff';
-    heatMap4 = '#696cff';
+    heatMap4 = 'rgba(105, 108, 255, 0.16)';
   }
 
   // Chart Colors

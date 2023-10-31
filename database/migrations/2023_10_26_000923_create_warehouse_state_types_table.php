@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('warehouse_state_types', function (Blueprint $table) {
             $table->id();
             $table->string('type_equipment_state', 250);
-            $table->integer('status_id');
+             $table->integer('status_id')->default(1);
             $table->integer('created by');
             $table->integer('updated_by');
             $table->timestamps();

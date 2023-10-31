@@ -574,7 +574,7 @@ button.list-group-item-primary.active {
 
 .timeline .timeline-point-primary {
   background-color: #696cff !important;
-  box-shadow: 0 0 0 0.1875rem rgba(105, 108, 255, 0.16);
+  box-shadow: 0 0 0 0.1875rem #696cff;
 }
 
 .timeline .timeline-indicator-primary {
@@ -841,7 +841,7 @@ a:hover {
   color: #696cff !important;
 }
 .select2-primary .select2-container--default .select2-selection--multiple .select2-selection__choice:hover {
-  background: rgba(105, 108, 255, 0.16) !important;
+  background: #696cff !important;
 }
 
 table.dataTable.dtr-column > tbody > tr > td.control:before,
@@ -1106,16 +1106,16 @@ li.ui-timepicker-selected,
   border-color: rgba(105, 108, 255, 0.15);
 }
 .fc .fc-event-primary.fc-list-event .fc-list-event-dot {
-  border-color: #696cff !important;
+  border-color: rgba(105, 108, 255, 0.16) !important;
 }
 .fc .fc-button-primary:not(.fc-prev-button):not(.fc-next-button) {
   background-color: rgba(105, 108, 255, 0.08) !important;
   border: 0;
-  color: #696cff;
+  color: rgba(105, 108, 255, 0.16);
 }
 .fc .fc-button-primary:not(.fc-prev-button):not(.fc-next-button).fc-button-active, .fc .fc-button-primary:not(.fc-prev-button):not(.fc-next-button):hover {
-  background-color: #696cff !important;
-  border-color: #696cff !important;
+  background-color: rgba(105, 108, 255, 0.16) !important;
+  border-color: rgba(105, 108, 255, 0.16) !important;
   color: #fff;
 }
 .fc .fc-button-primary:not(.fc-prev-button):not(.fc-next-button):hover {
@@ -1126,7 +1126,7 @@ li.ui-timepicker-selected,
 .swal2-progress-steps[class] .swal2-progress-step-line,
 .swal2-progress-steps[class] .swal2-active-progress-step,
 .swal2-progress-steps[class] .swal2-progress-step {
-  background: #696cff;
+  background: rgba(105, 108, 255, 0.16);
   color: #fff;
 }
 
@@ -1137,23 +1137,23 @@ li.ui-timepicker-selected,
 
 .pcr-app .pcr-type.active,
 .pcr-app .pcr-save {
-  background: #696cff !important;
+  background: rgba(105, 108, 255, 0.16) !important;
 }
 
 .icon-card.active {
-  outline: 1px solid #696cff;
+  outline: 1px solid rgba(105, 108, 255, 0.16);
 }
 .icon-card.active i,
 .icon-card.active svg {
-  color: #696cff;
+  color: rgba(105, 108, 255, 0.16);
 }
 
 .shepherd-element[data-popper-placement=bottom] .shepherd-arrow:before {
-  background-color: #696cff !important;
-  border-color: #696cff;
+  background-color: rgba(105, 108, 255, 0.16) !important;
+  border-color: rgba(105, 108, 255, 0.16);
 }
 .shepherd-element .shepherd-header {
-  background: #696cff !important;
+  background: rgba(105, 108, 255, 0.16) !important;
   color: #fff;
 }
 .shepherd-element .shepherd-header .shepherd-title,
@@ -1162,8 +1162,8 @@ li.ui-timepicker-selected,
 }
 .shepherd-element .shepherd-button:not(:disabled).btn-primary {
   color: #fff;
-  background-color: #696cff;
-  border-color: #696cff;
+  background-color: rgba(105, 108, 255, 0.16);
+  border-color: rgba(105, 108, 255, 0.16);
   box-shadow: 0 0.125rem 0.25rem 0 rgba(105, 108, 255, 0.4);
 }
 .shepherd-element .shepherd-button:not(:disabled).btn-primary:hover {
@@ -1189,8 +1189,8 @@ li.ui-timepicker-selected,
 }
 .shepherd-element .shepherd-button:not(:disabled).btn-primary.disabled, .shepherd-element .shepherd-button:not(:disabled).btn-primary:disabled {
   color: #fff !important;
-  background-color: #696cff !important;
-  border-color: #696cff !important;
+  background-color: rgba(105, 108, 255, 0.16) !important;
+  border-color: rgba(105, 108, 255, 0.16) !important;
   box-shadow: none !important;
 }
 .shepherd-element .shepherd-button:not(:disabled).btn-label-secondary {
@@ -1226,44 +1226,44 @@ li.ui-timepicker-selected,
 }
 
 .bs-stepper .step.active .bs-stepper-circle {
-  background-color: #696cff;
+  background-color: rgba(105, 108, 255, 0.16);
   color: #fff;
   box-shadow: 0 0.1875rem 0.375rem 0 rgba(105, 108, 255, 0.4);
 }
 .bs-stepper .step.active .bs-stepper-label {
-  color: #696cff !important;
+  color: rgba(105, 108, 255, 0.16) !important;
 }
 .bs-stepper .step.active .bs-stepper-icon svg {
-  fill: #696cff !important;
+  fill: rgba(105, 108, 255, 0.16) !important;
 }
 .bs-stepper .step.crossed .step-trigger .bs-stepper-circle {
   background-color: rgba(105, 108, 255, 0.16) !important;
-  color: #696cff !important;
+  color: rgba(105, 108, 255, 0.16) !important;
 }
 .bs-stepper .step.crossed .step-trigger .bs-stepper-icon svg {
-  fill: #696cff !important;
+  fill: rgba(105, 108, 255, 0.16) !important;
 }
 .bs-stepper .step.crossed + .line svg {
-  fill: #696cff;
+  fill: rgba(105, 108, 255, 0.16);
 }
 .bs-stepper .step.crossed + .line i {
-  color: #696cff;
+  color: rgba(105, 108, 255, 0.16);
 }
 .bs-stepper.wizard-icons .step.crossed .step-trigger .bs-stepper-label {
-  color: #696cff !important;
+  color: rgba(105, 108, 255, 0.16) !important;
 }
 .bs-stepper .step-trigger:focus {
-  color: #696cff;
+  color: rgba(105, 108, 255, 0.16);
 }
 .bs-stepper .step-trigger:focus svg {
-  fill: #696cff !important;
+  fill: rgba(105, 108, 255, 0.16) !important;
 }
 
 .app-chat .sidebar-body .chat-contact-list li.active {
-  background-color: #696cff;
+  background-color: rgba(105, 108, 255, 0.16);
 }
 .app-chat .app-chat-history .chat-history .chat-message.chat-message-right .chat-message-text {
-  background-color: #696cff !important;
+  background-color: rgba(105, 108, 255, 0.16) !important;
 }
 
 .navbar.landing-navbar .navbar-nav .show > .nav-link,
@@ -1271,7 +1271,7 @@ li.ui-timepicker-selected,
 .navbar.landing-navbar .navbar-nav .nav-link.show,
 .navbar.landing-navbar .navbar-nav .nav-link.active,
 .navbar.landing-navbar .navbar-nav .nav-link:hover {
-  color: #696cff !important;
+  color: rgba(105, 108, 255, 0.16) !important;
 }
 
 .landing-features .features-icon-wrapper .features-icon-box .features-icon {
@@ -1461,19 +1461,19 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
   background-color: rgba(255, 255, 255, 0.04);
 }
 .bg-menu-theme .menu-inner .menu-sub > .menu-item.active .menu-icon {
-  color: #696cff;
+  color: rgba(105, 108, 255, 0.16);
 }
 .bg-menu-theme .menu-inner > .menu-item.active > .menu-link {
-  background-color: #696cff !important;
+  background-color: rgba(105, 108, 255, 0.16) !important;
 }
 .bg-menu-theme .menu-inner > .menu-item.active:before {
-  background: #696cff;
+  background: rgba(105, 108, 255, 0.16);
 }
 .bg-menu-theme .menu-sub > .menu-item > .menu-link:before {
   background-color: #b4bdc6 !important;
 }
 .bg-menu-theme .menu-sub > .menu-item.active > .menu-link:not(.menu-toggle):before {
-  background-color: #696cff !important;
+  background-color: rgba(105, 108, 255, 0.16) !important;
   border: 3px solid #3f4a90 !important;
 }
 .layout-horizontal .bg-menu-theme .menu-inner > .menu-item .menu-sub {
@@ -1481,7 +1481,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 }
 
 .app-brand .layout-menu-toggle {
-  background-color: #696cff;
+  background-color: rgba(105, 108, 255, 0.16);
   border: 7px solid #f4f5fb;
 }
 .app-brand .layout-menu-toggle i {

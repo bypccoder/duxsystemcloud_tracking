@@ -574,7 +574,7 @@ button.list-group-item-primary.active {
 
 .timeline .timeline-point-primary {
   background-color: #696cff !important;
-  box-shadow: 0 0 0 0.1875rem rgba(105, 108, 255, 0.16);
+  box-shadow: 0 0 0 0.1875rem #696cff;
 }
 
 .timeline .timeline-indicator-primary {
@@ -841,7 +841,7 @@ a:hover {
   color: #696cff !important;
 }
 .select2-primary .select2-container--default .select2-selection--multiple .select2-selection__choice:hover {
-  background: rgba(105, 108, 255, 0.16) !important;
+  background: #696cff !important;
 }
 
 table.dataTable.dtr-column > tbody > tr > td.control:before,
@@ -1237,7 +1237,7 @@ li.ui-timepicker-selected,
   fill: #696cff !important;
 }
 .bs-stepper .step.crossed .step-trigger .bs-stepper-circle {
-  background-color: rgba(105, 108, 255, 0.16) !important;
+  background-color: #696cff !important;
   color: #696cff !important;
 }
 .bs-stepper .step.crossed .step-trigger .bs-stepper-icon svg {
@@ -1477,7 +1477,7 @@ html:not(.layout-menu-collapsed) .bg-menu-theme .menu-inner .menu-item .menu-lin
 }
 .bg-menu-theme .menu-inner > .menu-item.active > .menu-link {
   color: #696cff;
-  background-color: rgba(105, 108, 255, 0.16) !important;
+  background-color: #696cff !important;
 }
 .bg-menu-theme .menu-inner > .menu-item.active:before {
   background: #696cff;

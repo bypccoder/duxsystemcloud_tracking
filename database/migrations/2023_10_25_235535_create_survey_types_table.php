@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('survey_types', function (Blueprint $table) {
             $table->id();
             $table->string('survey_type', 250);
-            $table->integer('status_id');
+             $table->integer('status_id')->default(1);
             $table->integer('created by');
             $table->integer('updated_by');
             $table->timestamps();

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('survey_type_id')->references('id')->on('survey_types');
             $table->string('question1', 250);
             $table->string('question2', 250);
-            $table->integer('status_id');
+             $table->integer('status_id')->default(1);
             $table->integer('created by');
             $table->integer('updated_by');
             $table->timestamps();

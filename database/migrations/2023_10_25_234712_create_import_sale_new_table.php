@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('model', 250);
             $table->string('range', 250);
             $table->text('observation');
-            $table->integer('status_id');
+             $table->integer('status_id')->default(1);
             $table->integer('created by');
             $table->integer('updated_by');
             $table->timestamps();

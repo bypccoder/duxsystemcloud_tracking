@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('result_1_back_id');
             $table->foreign('result_1_back_id')->references('id')->on('result_1_back');
             $table->string('result', 250);
-            $table->integer('status_id');
+             $table->integer('status_id')->default(1);
             $table->integer('created by');
             $table->integer('updated_by');
             $table->timestamps();

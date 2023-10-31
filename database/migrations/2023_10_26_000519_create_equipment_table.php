@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('model_id');
             $table->foreign('model_id')->references('id')->on('models');
             $table->string('serie', 250);
-            $table->integer('status_id');
+             $table->integer('status_id')->default(1);
             $table->integer('created by');
             $table->integer('updated_by');
             $table->timestamps();

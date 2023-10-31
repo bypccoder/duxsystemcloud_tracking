@@ -51,7 +51,7 @@ return new class extends Migration
             $table->unsignedBigInteger('motorized_id');
             $table->foreign('motorized_id')->references('id')->on('users');
             $table->text('observation');
-            $table->integer('status_id');
+             $table->integer('status_id')->default(1);
             $table->integer('created by');
             $table->integer('updated_by');
             $table->timestamps();

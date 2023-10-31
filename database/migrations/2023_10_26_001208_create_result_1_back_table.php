@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('result_1_back', function (Blueprint $table) {
             $table->id();
             $table->string('result', 250);
-            $table->integer('status_id');
+             $table->integer('status_id')->default(1);
             $table->integer('created by');
             $table->integer('updated_by');
             $table->timestamps();

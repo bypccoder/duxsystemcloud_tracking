@@ -24,9 +24,7 @@ class TaskController extends Controller
      */
     public function index($tipoTab)
     {
-        $user = Auth::user();
 
-        //$this->authorize('RolePolicy', $user);
-        return view('admin.task.index', ['tipoTab' => $tipoTab]);
+        return view('admin.tasks.index', ['tipoTab' => $tipoTab]);
     }
 }
