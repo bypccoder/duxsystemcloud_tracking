@@ -25,5 +25,21 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserSeeder::class);
 
+        $this->call(Result1BackSeeder::class);
+
+        $this->call(Result2BackSeeder::class);
+
+        $this->call(TimeRangeSeeder::class);
+
+        $this->call(ModelsSeeder::class);
+
+        $this->call(MotorizedStatusSeeder::class);
+
+        $this->call(ManagementTypesSeeder::class);
+
+        $this->call(UserHistorySeeder::class);
+
+        $this->call(SurveyTypesSeeder::class);
+
     }
 }

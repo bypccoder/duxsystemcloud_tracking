@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('models', function (Blueprint $table) {
             $table->id();
             $table->string('model_name', 250);
-             $table->integer('status_id')->default(1);
-            $table->integer('created by');
+            $table->integer('status_id')->default(1);
+            $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
         });

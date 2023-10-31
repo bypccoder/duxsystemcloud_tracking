@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('result2_backs', function (Blueprint $table) {
+        Schema::create('time_ranges', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('result1_backs_id');
-            $table->foreign('result1_backs_id')->references('id')->on('result1_backs');
-            $table->string('result', 250);
-            $table->integer('status_id')->default(1);
+            $table->string('description', 250);
             $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
@@ -28,10 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('result2_backs', function (Blueprint $table) {
-            $table->dropForeign(['result1_backs_id']);
-        });
-
-        Schema::dropIfExists('result2_backs');
+        Schema::dropIfExists('time_ranges');
     }
 };

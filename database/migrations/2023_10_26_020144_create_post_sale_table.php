@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('equipment_type', 250);
             $table->string('model_text', 250);
             $table->string('old_serial', 250);
-            $table->string('range', 250);
-            $table->enum('record_type', ['formulario', 'importador']);
+            $table->unsignedBigInteger('time_ranges_id');
+            $table->foreign('time_ranges_id')->references('id')->on('time_ranges');
+            $table->enum('record_type', ['formulario', 'importacion','app']);
             $table->unsignedBigInteger('management_type_id');
             $table->foreign('management_type_id')->references('id')->on('management_types');
             $table->unsignedBigInteger('warehouse_state_type_id');
@@ -40,19 +41,20 @@ return new class extends Migration
             $table->unsignedBigInteger('equipment_id');
             $table->foreign('equipment_id')->references('id')->on('equipment');
             $table->string('serial', 250);
-            $table->unsignedBigInteger('result_1_back_id');
-            $table->foreign('result_1_back_id')->references('id')->on('result_1_back');
-            $table->unsignedBigInteger('result_2_back_id');
-            $table->foreign('result_2_back_id')->references('id')->on('result_2_back');
-            $table->date('agenda_date');
-            $table->string('agenda_time', 250);
+            $table->string('email_customer', 250);
+            $table->unsignedBigInteger('result1_backs_id');
+            $table->foreign('result1_backs_id')->references('id')->on('result1_backs');
+            $table->unsignedBigInteger('result2_backs_id');
+            $table->foreign('result2_backs_id')->references('id')->on('result2_backs');
+            $table->date('diary_date');
+            $table->string('diary_time', 250);
             $table->date('delivery_date');
             $table->string('delivery_time', 250);
             $table->unsignedBigInteger('motorized_id');
             $table->foreign('motorized_id')->references('id')->on('users');
             $table->text('observation');
-             $table->integer('status_id')->default(1);
-            $table->integer('created by');
+            $table->integer('status_id')->default(1);
+            $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
         });
@@ -64,13 +66,14 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('post_sale', function (Blueprint $table) {
+            $table->dropForeign(['time_ranges_id']);
             $table->dropForeign(['management_type_id']);
             $table->dropForeign(['warehouse_state_type_id']);
             $table->dropForeign(['survey_id']);
             $table->dropForeign(['model_id']);
             $table->dropForeign(['equipment_id']);
-            $table->dropForeign(['result_1_back_id']);
-            $table->dropForeign(['result_2_back_id']);
+            $table->dropForeign(['result1_backs_id']);
+            $table->dropForeign(['result2_backs_id']);
             $table->dropForeign(['motorized_id']);
         });
 

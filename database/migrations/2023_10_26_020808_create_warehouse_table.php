@@ -26,7 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('warehouse_state_type_id');
             $table->foreign('warehouse_state_type_id')->references('id')->on('warehouse_state_types');
             $table->text('observation');
-            $table->integer('created by');
+            $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
         });

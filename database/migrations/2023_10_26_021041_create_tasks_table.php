@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('files', 250);
             $table->string('token', 250);
             $table->text('observation');
-            $table->integer('created by');
+            $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
         });

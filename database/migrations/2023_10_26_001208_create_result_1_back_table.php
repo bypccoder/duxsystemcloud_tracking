@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('result_1_back', function (Blueprint $table) {
+        Schema::create('result1_backs', function (Blueprint $table) {
             $table->id();
             $table->string('result', 250);
-             $table->integer('status_id')->default(1);
-            $table->integer('created by');
+            $table->integer('status_id')->default(1);
+            $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('result_1_back');
+        Schema::dropIfExists('result1_backs');
     }
 };

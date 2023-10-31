@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('range', 250);
             $table->text('observation');
              $table->integer('status_id')->default(1);
-            $table->integer('created by');
+            $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
         });

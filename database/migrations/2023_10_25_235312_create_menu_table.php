@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('position');
             $table->integer('parent_menu');
              $table->integer('status_id')->default(1);
-            $table->integer('created by');
+            $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
         });

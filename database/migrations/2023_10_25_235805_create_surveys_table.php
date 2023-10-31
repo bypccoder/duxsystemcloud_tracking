@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('question1', 250);
             $table->string('question2', 250);
              $table->integer('status_id')->default(1);
-            $table->integer('created by');
+            $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
         });

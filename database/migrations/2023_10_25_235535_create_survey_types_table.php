@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('survey_type', 250);
              $table->integer('status_id')->default(1);
-            $table->integer('created by');
+            $table->integer('created_by');
             $table->integer('updated_by');
             $table->timestamps();
         });
