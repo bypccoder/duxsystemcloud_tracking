@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:admin', 'permission:admin.users.index|admin.users.create|admin.users.edit|admin.users.destroy']);
+        $this->middleware(['role:Admin', 'permission:admin.users.index|admin.users.create|admin.users.edit|admin.users.destroy']);
     }
 
 
