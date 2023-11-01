@@ -316,7 +316,9 @@
         function showManagementTypes() {
             $(".divChangeLogic").addClass("d-none");
 
-            $("#divSale_date input, #divChange_date input, #divPickup_date input, #divSupport_date input, #divSurvey_date input, #divNew_serial input, #divOld_serial input, #divModel_text input, #survey_text input").val('');
+            if (management_types !== ""){
+                $("#divSale_date input, #divChange_date input, #divPickup_date input, #divSupport_date input, #divSurvey_date input, #divNew_serial input, #divOld_serial input, #divModel_text input, #survey_text input").val('');
+            }
 
             let management_types = $("#management_types").val();
 
