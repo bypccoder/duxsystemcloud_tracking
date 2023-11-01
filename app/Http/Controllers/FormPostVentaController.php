@@ -29,22 +29,22 @@ class FormPostVentaController extends Controller
     public function getFormsPostSaleData(Request $request)
     {
 
-        $query = User::query();
+        $query = PostSale::query();
 
         // Realiza búsquedas o filtros si es necesario
         if ($request->has('search') && !empty($request->input('search')['value'])) {
             $searchValue = $request->input('search')['value'];
             $query->where(function ($subquery) use ($searchValue) {
                 $subquery->where('id', 'like', '%' . $searchValue . '%')
-                    ->orWhere('name', 'like', '%' . $searchValue . '%')
-                    ->orWhere('email', 'like', '%' . $searchValue . '%');
+                    ->orWhere('document', 'like', '%' . $searchValue . '%')
+                    ->orWhere('business_name', 'like', '%' . $searchValue . '%');
             });
         }
 
         $totalRecords = $query->count(); // Obtén el número total de registros antes de la paginación
 
         // Realiza la paginación
-        $usuarios = $query->offset($request->input('start'))
+        $form_postsales = $query->offset($request->input('start'))
             ->limit($request->input('length'))
             ->get();
 
@@ -52,7 +52,7 @@ class FormPostVentaController extends Controller
             'draw' => intval($request->input('draw')),
             'recordsTotal' => $totalRecords, // Total de registros sin filtrar
             'recordsFiltered' => $totalRecords, // Total de registros después del filtro (en este ejemplo, no hay filtro)
-            'data' => $usuarios,
+            'data' => $form_postsales,
         ]);
     }
 

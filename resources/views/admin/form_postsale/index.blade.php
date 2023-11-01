@@ -16,8 +16,8 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Nombre</th>
-                            <th>Email</th>
+                            <th>Documento</th>
+                            <th>Razón Social</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,10 +35,10 @@
                     data: 'id'
                 },
                 {
-                    data: 'name'
+                    data: 'document'
                 },
                 {
-                    data: 'email'
+                    data: 'business_name'
                 },
                 {
                     data: ''
