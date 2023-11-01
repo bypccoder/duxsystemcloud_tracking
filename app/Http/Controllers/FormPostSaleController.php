@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class FormPostVentaController extends Controller
+class FormPostSaleController extends Controller
 {
 
     public function __construct()
