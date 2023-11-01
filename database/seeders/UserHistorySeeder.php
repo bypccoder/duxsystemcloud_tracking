@@ -13,6 +13,10 @@ class UserHistorySeeder extends Seeder
      */
     public function run(): void
     {
-        UserHistory::create(['user_id' => 1,'type_row'=>'create','field_name'=>'','field_description'=>'','old_value'=>'Ha creado el usuario.','new_value'=>'', 'created_by' => 1]);
+        UserHistory::create(['user_id' => 1,'type_row'=>'create','field_name'=>'','field_description'=>'Ha creado el usuario.','old_value'=>'','new_value'=>'', 'created_by' => 1]);
+
+        UserHistory::create(['user_id' => 2,'type_row'=>'create','field_name'=>'','field_description'=>'Ha creado el usuario.','old_value'=>'','new_value'=>'', 'created_by' => 1]);
+
+        UserHistory::create(['user_id' => 3,'type_row'=>'create','field_name'=>'','field_description'=>'Ha creado el usuario.','old_value'=>'','new_value'=>'', 'created_by' => 1]);
     }
 }

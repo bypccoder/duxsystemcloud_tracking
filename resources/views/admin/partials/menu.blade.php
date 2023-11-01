@@ -9,7 +9,16 @@
     <div class="menu-inner-shadow"></div>
 
     @php
-        $menuData = [['route' => 'admin.users.index', 'text' => 'Usuarios', 'tipoTab' => '', 'icon' => 'bx bx-bar-chart-alt-2'], ['route' => 'admin.dashboard', 'text' => 'Dashboards', 'tipoTab' => '', 'icon' => 'bx bxs-dashboard'], ['route' => 'admin.tasks.index', 'text' => 'Nuevos', 'tipoTab' => 'nuevos', 'icon' => 'bx bx-bar-chart-alt-2'], ['route' => 'admin.tasks.index', 'text' => 'Agendados', 'tipoTab' => 'agendados', 'icon' => 'bx bx-sort-alt-2'], ['route' => 'admin.tasks.index', 'text' => 'Reprogramados', 'tipoTab' => 'reprogramados', 'icon' => 'bx bx-cog'], ['route' => 'admin.tasks.index', 'text' => 'Rechazados', 'tipoTab' => 'rechazados', 'icon' => 'bx bx-shield-x']];
+        $menuData = [
+            ['route' => 'admin.users.index', 'text' => 'Usuarios', 'tipoTab' => '', 'icon' => 'bx bx-bar-chart-alt-2'],
+            ['route' => 'admin.dashboard.index', 'text' => 'Dashboards', 'tipoTab' => '', 'icon' => 'bx bxs-dashboard'],
+            ['route' => 'admin.tasks.index', 'text' => 'Nuevos', 'tipoTab' => 'nuevos', 'icon' => 'bx bx-bar-chart-alt-2'],
+            ['route' => 'admin.tasks.index', 'text' => 'Agendados', 'tipoTab' => 'agendados', 'icon' => 'bx bx-sort-alt-2'],
+            ['route' => 'admin.tasks.index', 'text' => 'Reprogramados', 'tipoTab' => 'reprogramados', 'icon' => 'bx bx-cog'],
+            ['route' => 'admin.tasks.index', 'text' => 'Rechazados', 'tipoTab' => 'rechazados', 'icon' => 'bx bx-shield-x'],
+            ['route' => 'admin.form_postsale.index', 'text' => 'Post Venta', 'tipoTab' => '', 'icon' => 'bx bxs-user-detail'],
+
+        ];
 
         $menuItems = [];
 

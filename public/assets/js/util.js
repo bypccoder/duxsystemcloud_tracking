@@ -41,7 +41,7 @@ var ExportHelper = {
         };
     },
 
-    createDataTableConfig: function(configParams) {
+    createDataTableConfig: function (configParams) {
         return {
             dom: "<'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6 dataTables_pager'p>>",
             processing: true,
@@ -62,13 +62,20 @@ var ExportHelper = {
                     }
                 },
                 {
-                    targets: 3,
+                    targets: -1,
                     title: 'Actions',
                     orderable: false,
                     render: function (data, type, full, meta) {
-                        var editButton = `<a href="/${configParams.editRouteParam}/${full.id}" class="btn btn-sm btn-icon item-edit text-warning"><i class="bx bxs-edit"></i></a>`;
-                        var deleteButton = `<a href="/${configParams.deleteRouteParam}/${full.id}" class="btn btn-sm btn-icon item-delete text-danger"><i class="bx bxs-trash"></i></a>`;
-                        return editButton + deleteButton;
+                        var showButton = `<a data-bs-toggle="tooltip" data-bs-placement="top" title="Mostrar Detalle" href="/${configParams.showRouteParam}/${full.id}" class="btn btn-sm btn-icon item-edit text-info"><i class="bx bxs-detail"></i></a>`;
+                        var editButton = `<a data-bs-toggle="tooltip" data-bs-placement="top" title="Editar" href="/${configParams.editRouteParam}/${full.id}" class="btn btn-sm btn-icon item-edit text-warning"><i class="bx bxs-edit"></i></a>`;
+                        if (configParams.editRouteParam === '') {
+                            editButton = '';
+                        }
+                        var deleteButton = `<a data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar" href="/${configParams.deleteRouteParam}/${full.id}" class="btn btn-sm btn-icon item-delete text-danger"><i class="bx bxs-trash"></i></a>`;
+                        if (configParams.deleteRouteParam === '') {
+                            deleteButton = '';
+                        }
+                        return showButton + editButton + deleteButton;
                     }
                 }
             ],
@@ -78,17 +85,17 @@ var ExportHelper = {
             displayLength: 10,
             lengthMenu: [10, 25, 50, 75, 100],
             buttons: [
-                {
-                    text: '<i class="bx bx-plus"></i> Agregar Usuario',
-                    className: 'btn btn-primary',
+                (configParams.createRoute !== '') ? {
+                    text: '<i class="bx bx-plus"></i> Agregar Registro',
+                    className: 'btn btn-primary btn-sm',
                     action: function (e, dt, button, config) {
                         // Redirige a la página de creación de usuarios al hacer clic en el botón
                         window.location.href = configParams.createRoute;
                     }
-                },
+                } : '',
                 {
                     extend: 'collection',
-                    className: 'btn btn-label-primary dropdown-toggle me-2',
+                    className: 'btn btn-sm btn-label-primary dropdown-toggle me-2',
                     text: '<i class="bx bx-export me-sm-1"></i> <span class="d-none d-sm-inline-block">Exportar</span>',
                     buttons: configParams.exportButtons.map(function (buttonInfo) {
                         return ExportHelper.createExportButton(buttonInfo.text, buttonInfo.format, configParams.exportColumns);

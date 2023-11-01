@@ -17,14 +17,22 @@ class RoleSeeder extends Seeder
         $role1 = Role::create(['name' => 'Admin']);
         $role2 = Role::create(['name' => 'Backoffice']);
         $role3 = Role::create(['name' => 'Almacen']);
+        $role4 = Role::create(['name' => 'Post-Venta']);
+        $role5 = Role::create(['name' => 'Motorizado']);
 
         Permission::create(['name'=>'admin.users.index'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.users.create'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.users.edit'])->syncRoles([$role1]);
         Permission::create(['name'=>'admin.users.destroy'])->syncRoles([$role1]);
 
-        Permission::create(['name'=>'admin.dashboard'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name'=>'admin.dashboard.index'])->syncRoles([$role1,$role2]);
+        Permission::create(['name'=>'admin.dashboard.show'])->syncRoles([$role1,$role2]);
         Permission::create(['name'=>'admin.tasks.index'])->syncRoles([$role1,$role2]);
+
+        Permission::create(['name'=>'admin.form_postsale.index'])->syncRoles([$role1,$role4]);
+        Permission::create(['name'=>'admin.form_postsale.create'])->syncRoles([$role1,$role4]);
+        Permission::create(['name'=>'admin.form_postsale.edit'])->syncRoles([$role1,$role4]);
+        Permission::create(['name'=>'admin.form_postsale.destroy'])->syncRoles([$role1,$role4]);
 
     }
 }

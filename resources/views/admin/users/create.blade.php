@@ -70,7 +70,12 @@
                                     <div class="row justify-content-end">
                                         <div class="col-sm-10">
                                             <button type="submit" id="btn" name="btn"
-                                                class="btn btn-primary">Guardar</button>
+                                                class="btn btn-primary btn-sm">GUARDAR</button>
+
+                                            <a href="{{ route('admin.users.index') }}" id="btn" name="btn"
+                                                class="btn btn-label-secondary btn-sm"><i class="bx bx-arrow-back"></i>
+                                                &nbsp;
+                                                REGRESAR</a>
                                         </div>
                                     </div>
                                 </form>

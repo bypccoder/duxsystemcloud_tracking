@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -13,7 +15,14 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware([
+            'role:Admin|Backoffice|Post-Venta',
+            'permission:admin.dashboard.index|home|admin.form_postsale.index',
+
+        ]);
+
+        // $this->middleware(['role:Post-Venta', 'permission:admin.form_postsale.index']);
+
     }
 
     /**
@@ -22,6 +31,25 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
+    {
+
+        $user = Auth::user();
+
+        if ($user->hasRole('Admin')) {
+            return redirect()->route('admin.dashboard.index');
+        } elseif ($user->hasRole('Backoffice')) {
+            return redirect()->route('admin.dashboard.index');
+        } elseif ($user->hasRole('Post-Venta')) {
+            return redirect()->route('admin.form_postsale.index');
+        }else {
+            return redirect()->route('admin.dashboard.index');
+        }
+
+
+
+    }
+
+    public function show()
     {
         return view('admin.dashboard.index');
     }

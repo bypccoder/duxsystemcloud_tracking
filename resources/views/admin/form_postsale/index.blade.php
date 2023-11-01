@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header flex-column flex-md-row">
                 <div class="head-label text-left">
-                    <h5 class="card-title mb-0 lead fs-3 text-primary">Lista de Usuarios</h5>
+                    <h5 class="card-title mb-0 lead fs-3 text-primary">Lista de Post-Venta</h5>
                 </div>
             </div>
             <div class="card-datatable table-responsive">
@@ -66,11 +66,11 @@
                 }
             ],
             exportColumns: [1, 2], // Modificar las columnas para exportar
-            ajaxURL: "{{ route('admin.get.users.data') }}",
-            showRouteParam: "users/show",
-            editRouteParam: "users/edit",
-            deleteRouteParam: "users/destroy",
-            createRoute: "users/create"
+            ajaxURL: "{{ route('admin.get.form_postsale.data') }}",
+            showRouteParam: "form_postsale/show",
+            editRouteParam: "form_postsale/edit",
+            deleteRouteParam: "form_postsale/destroy",
+            createRoute: "form_postsale/create"
         };
 
         // Llamar a createDataTableConfig con los parámetros
