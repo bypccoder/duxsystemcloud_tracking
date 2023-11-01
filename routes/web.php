@@ -38,9 +38,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('/users/update/{id}',  [App\Http\Controllers\UserController::class, 'update'])->name('admin.users.update');
 
-    Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard.index');
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('admin.dashboard.index');
 
-    Route::get('/dashboard/show/{id}', [App\Http\Controllers\HomeController::class, 'show'])->name('admin.dashboard.show');
+    Route::get('/dashboard/show/{id}', [App\Http\Controllers\DashboardController::class, 'show'])->name('admin.dashboard.show');
 
     Route::get('/tasks/{tipoTab}', [App\Http\Controllers\TaskController::class, 'index'])->name('admin.tasks.index');
 

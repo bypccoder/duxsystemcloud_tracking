@@ -15,14 +15,12 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+
         $this->middleware([
             'role:Admin|Backoffice|Post-Venta',
             'permission:admin.dashboard.index|home|admin.form_postsale.index',
 
         ]);
-
-        // $this->middleware(['role:Post-Venta', 'permission:admin.form_postsale.index']);
-
     }
 
     /**
@@ -34,18 +32,13 @@ class HomeController extends Controller
     {
 
         $user = Auth::user();
-
         if ($user->hasRole('Admin')) {
-            return redirect()->route('admin.dashboard.index');
+            return redirect()->route('admin.dashboard.show');
         } elseif ($user->hasRole('Backoffice')) {
-            return redirect()->route('admin.dashboard.index');
+            return redirect()->route('admin.dashboard.show');
         } elseif ($user->hasRole('Post-Venta')) {
             return redirect()->route('admin.form_postsale.index');
-        }else {
-            return redirect()->route('admin.dashboard.index');
         }
-
-
 
     }
 

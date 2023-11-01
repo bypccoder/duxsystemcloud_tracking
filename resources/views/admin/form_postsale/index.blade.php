@@ -12,12 +12,14 @@
                 </div>
             </div>
             <div class="card-datatable table-responsive">
-                <table class="table border-top" id="tableUserDt">
+                <table class="table border-top" id="tablePostSaleDt">
                     <thead>
                         <tr>
                             <th></th>
                             <th>Documento</th>
                             <th>Razón Social</th>
+                            <th>Tipo de Gestión</th>
+                            <th>Rango Horario</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -39,6 +41,12 @@
                 },
                 {
                     data: 'business_name'
+                },
+                {
+                    data: 'management'
+                },
+                {
+                    data: 'description'
                 },
                 {
                     data: ''
@@ -77,6 +85,6 @@
         var dataTableConfig = ExportHelper.createDataTableConfig(configParams);
 
         // Inicializar el DataTable en un elemento HTML específico (por ejemplo, con el ID "miDataTable")
-        $('#tableUserDt').DataTable(dataTableConfig);
+        $('#tablePostSaleDt').DataTable(dataTableConfig);
     </script>
 @endsection

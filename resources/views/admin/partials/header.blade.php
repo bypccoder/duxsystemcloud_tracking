@@ -1,3 +1,6 @@
+@php
+$userAuth= Auth::user();
+@endphp
 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
     id="layout-navbar">
     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
@@ -300,7 +303,8 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="{{ url('assets') }}/img/avatars/default.png" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="{{ url('assets') }}/img/avatars/default.png" alt
+                            class="w-px-40 h-auto rounded-circle" />
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -314,8 +318,17 @@
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-medium d-block">{{ Auth::user()->name }}</span>
-                                    <small class="text-muted">Admin</small>
+                                    <span class="fw-medium d-block">{{$userAuth->name }}</span>
+                                    @php
+                                        $rolesAuth = $userAuth->getRoleNames();
+                                        $colors = ['info', 'primary', 'secondary', 'dark', 'success', 'warning', 'danger'];
+                                        $randomColor = $colors[array_rand($colors)];
+                                    @endphp
+                                    @foreach ($rolesAuth as $roleAuth)
+                                    <span class="badge badge-sm bg-label-{{ $randomColor }}">{{ $roleAuth }}</span>
+                                    @endforeach
+
+                                    {{-- <small class="text-muted">Admin</small> --}}
                                 </div>
                             </div>
                         </a>
@@ -333,7 +346,8 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                             <i class="bx bx-power-off me-2"></i>
                             <span class="align-middle">{{ __('Cerrar sesión') }}</span>
