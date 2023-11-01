@@ -44,19 +44,19 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/tasks/{tipoTab}', [App\Http\Controllers\TaskController::class, 'index'])->name('admin.tasks.index');
 
-    Route::get('/form_postsale', [App\Http\Controllers\FormPostVentaController::class, 'index'])->name('admin.form_postsale.index');
+    Route::get('/form_postsale', [App\Http\Controllers\FormPostSaleController::class, 'index'])->name('admin.form_postsale.index');
 
-    Route::get('/get-form-postsale-data', [App\Http\Controllers\FormPostVentaController::class, 'getFormsPostSaleData'])->name('admin.get.form_postsale.data');
+    Route::get('/get-form-postsale-data', [App\Http\Controllers\FormPostSaleController::class, 'getFormsPostSaleData'])->name('admin.get.form_postsale.data');
 
-    Route::get('/form_postsale/show/{id}',  [App\Http\Controllers\FormPostVentaController::class, 'show'])->name('admin.form_postsale.show');
+    Route::get('/form_postsale/show/{id}',  [App\Http\Controllers\FormPostSaleController::class, 'show'])->name('admin.form_postsale.show');
 
-    Route::get('/form_postsale/create', [App\Http\Controllers\FormPostVentaController::class, 'create'])->name('admin.form_postsale.create');
+    Route::get('/form_postsale/create', [App\Http\Controllers\FormPostSaleController::class, 'create'])->name('admin.form_postsale.create');
 
-    Route::post('/form_postsale/store', [App\Http\Controllers\FormPostVentaController::class, 'store'])->name('admin.form_postsale.store');
+    Route::post('/form_postsale/store', [App\Http\Controllers\FormPostSaleController::class, 'store'])->name('admin.form_postsale.store');
 
-    Route::get('/form_postsale/edit/{id}',  [App\Http\Controllers\FormPostVentaController::class, 'edit'])->name('admin.form_postsale.edit');
+    Route::get('/form_postsale/edit/{id}',  [App\Http\Controllers\FormPostSaleController::class, 'edit'])->name('admin.form_postsale.edit');
 
-    Route::put('/form_postsale/update/{id}',  [App\Http\Controllers\FormPostVentaController::class, 'update'])->name('admin.form_postsale.update');
+    Route::put('/form_postsale/update/{id}',  [App\Http\Controllers\FormPostSaleController::class, 'update'])->name('admin.form_postsale.update');
 
 });
 
