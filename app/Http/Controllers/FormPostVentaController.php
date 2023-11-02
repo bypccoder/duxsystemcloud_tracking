@@ -556,4 +556,78 @@ class FormPostVentaController extends Controller
     {
         //
     }
+
+    public function news($userid){
+        // Obtén todos los contrato desde la base de datos
+        $postsales = PostSale::select()
+        //->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id ')
+        //->join('area', 'area.id_area', '=', 'clientearea.id_area')
+        //->join('cliente', 'contrato.id_cliente', '=', 'cliente.id_cliente')
+        //->join('tipocontrato', 'contrato.id_tipocontrato', '=', 'tipocontrato.id_tipocontrato')
+        //->join('estadocontrato', 'contrato.id_estadocontrato', '=', 'estadocontrato.id_estadocontrato')
+        ->where('motorized_id', $userid)
+        ->limit(4)
+        ->get();
+        if($postsales->count() > 0){
+            $success = true;
+            $message = 'Tareas listadas';
+        }else{
+            $success = false;
+            $message = 'No se encontraron tareas';
+            $postsales = '';
+        }
+        return compact('success', 'message', 'postsale');
+    }
+
+    public function olds($userid){
+        // Obtén todos los contrato desde la base de datos
+        $postsales = PostSale::select()
+        //->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id ')
+        //->join('area', 'area.id_area', '=', 'clientearea.id_area')
+        //->join('cliente', 'contrato.id_cliente', '=', 'cliente.id_cliente')
+        //->join('tipocontrato', 'contrato.id_tipocontrato', '=', 'tipocontrato.id_tipocontrato')
+        //->join('estadocontrato', 'contrato.id_estadocontrato', '=', 'estadocontrato.id_estadocontrato')
+        ->where('motorized_id', $userid)
+        //->limit(4)
+        ->get();
+        if($postsales->count() > 0){
+            $success = true;
+            $message = 'Tareas listadas';
+        }else{
+            $success = false;
+            $message = 'No se encontraron tareas';
+            $postsales = '';
+        }
+        return compact('success', 'message', 'postsale');
+    }
+
+    public function showforapp($idpostsale){
+        $postsale=PostSale::where('id', $idpostsale)->first();
+        if($postsale->count() > 0){
+            $success = true;
+            $message = 'Tarea Encontrada';
+        }else{
+            $success = false;
+            $message = 'Error con la tarea';
+            $postsale = '';
+        }
+        return compact('success', 'message', 'postsale');
+    }
+
+    public function storeapp(Request $request){
+        // Accede a los datos JSON enviados en la solicitud
+        $data = $request->json()->all();
+        //dd($data);
+        // Procesa los datos y realiza la lógica para guardar la tarea en la base de datos
+        $postsale=PostSale::create($data);
+        // Devuelve una respuesta
+        if($postsale){
+            $success = true;
+            $message = 'Tarea Registrada Correctamente';
+        }else{
+            $success = false;
+            $message = 'Error con la tarea';
+        }
+        return compact('success', 'message');
+    }
 }
