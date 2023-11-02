@@ -63,7 +63,7 @@
                                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                         class="bx bx-buildings"></i></span>
                                                 <input type="text" id="business_name" name="business_name"
-                                                    autocomplete="off" class="form-control" placeholder=""
+                                                    autocomplete="off" class="form-control uppercase" placeholder=""
                                                     value="{{ old('business_name') }}">
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bx-user"></i></span>
                                                 <input type="text" id="receiving_person" name="receiving_person"
-                                                    autocomplete="off" class="form-control"
+                                                    autocomplete="off" class="form-control uppercase"
                                                     value="{{ old('receiving_person') }}" />
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bx-envelope"></i></span>
                                                 <input type="text" id="email_customer" name="email_customer"
-                                                    autocomplete="off" class="form-control"
+                                                    autocomplete="off" class="form-control uppercase"
                                                     value="{{ old('email_customer') }}" />
                                             </div>
                                         </div>
@@ -110,14 +110,14 @@
                                         <label class="col-sm-2 col-form-label" for="address">Dirección</label>
                                         <div class="col-sm-4">
                                             <div class="input-group input-group-merge">
-                                                <textarea id="address" name="address" autocomplete="off" class="form-control">{{ old('address') }}</textarea>
+                                                <textarea id="address" name="address" autocomplete="off" class="form-control uppercase">{{ old('address') }}</textarea>
                                             </div>
 
                                         </div>
                                         <label class="col-sm-2 col-form-label" for="reference">Referencia</label>
                                         <div class="col-sm-4">
                                             <div class="input-group input-group-merge">
-                                                <textarea id="reference" name="reference" autocomplete="off" class="form-control">{{ old('reference') }}</textarea>
+                                                <textarea id="reference" name="reference" autocomplete="off" class="form-control uppercase">{{ old('reference') }}</textarea>
                                             </div>
 
                                         </div>
@@ -191,7 +191,7 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bxs-book-content"></i></span>
                                                 <input type="text" id="survey_text" name="survey_text"
-                                                    autocomplete="off" class="form-control"
+                                                    autocomplete="off" class="form-control uppercase"
                                                     value="{{ old('survey_text') }}" />
                                             </div>
                                         </div>
@@ -222,7 +222,7 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bx-folder"></i></span>
                                                 <input type="text" id="model_text" name="model_text"
-                                                    autocomplete="off" class="form-control"
+                                                    autocomplete="off" class="form-control uppercase"
                                                     value="{{ old('model_text') }}" />
                                             </div>
                                         </div>
@@ -257,7 +257,7 @@
                                         <div class="col-sm-10">
                                             <div class="input-group input-group-merge">
 
-                                                <textarea id="observation" name="observation" autocomplete="off" class="form-control">{{ old('observation') }}</textarea>
+                                                <textarea id="observation" name="observation" autocomplete="off" class="form-control uppercase">{{ old('observation') }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -268,7 +268,7 @@
                                             <button type="submit" id="btn" name="btn"
                                                 class="btn btn-primary btn-sm">GUARDAR</button>
 
-                                            <a href="{{ route('admin.users.index') }}" id="btn" name="btn"
+                                            <a href="{{ route('admin.form_postsale.index') }}" id="btn" name="btn"
                                                 class="btn btn-label-secondary btn-sm"><i class="bx bx-arrow-back"></i>
                                                 &nbsp;
                                                 REGRESAR</a>
@@ -291,6 +291,8 @@
         function showManagementTypes() {
             $(".divChangeLogic").addClass("d-none");
 
+            $("#divSale_date input, #divChange_date input, #divPickup_date input, #divSupport_date input, #divSurvey_date input, #divNew_serial input, #divOld_serial input, #divModel_text input, #survey_text input").val('');
+
             let management_types = $("#management_types").val();
 
             if (management_types == 1) {
@@ -308,6 +310,10 @@
         $(document).ready(function() {
 
             showManagementTypes();
+
+            $('.uppercase').on('input', function () {
+                $(this).val($(this).val().toUpperCase());
+            });
 
             $("#management_types").change(function() {
                 showManagementTypes();

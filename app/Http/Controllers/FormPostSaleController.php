@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class FormPostVentaController extends Controller
+class FormPostSaleController extends Controller
 {
 
     public function __construct()
@@ -29,7 +29,10 @@ class FormPostVentaController extends Controller
     public function getFormsPostSaleData(Request $request)
     {
 
-        $query = PostSale::query();
+        $query = PostSale::select('post_sale.*', 'management_types.management', 'time_ranges.description')
+            ->leftJoin('management_types', 'post_sale.management_type_id', '=', 'management_types.id')
+            ->leftJoin('time_ranges', 'post_sale.time_ranges_id', '=', 'time_ranges.id')
+            ->where('post_sale.status_id', 1);
 
         // Realiza búsquedas o filtros si es necesario
         if ($request->has('search') && !empty($request->input('search')['value'])) {
@@ -197,10 +200,21 @@ class FormPostVentaController extends Controller
     public function show(string $id)
     {
         $form_postsale = PostSale::find($id);
+
+        $form_postsale = PostSale::select('post_sale.*', 'management_types.management', 'time_ranges.description')
+            ->leftJoin('management_types', 'post_sale.management_type_id', '=', 'management_types.id')
+            ->leftJoin('time_ranges', 'post_sale.time_ranges_id', '=', 'time_ranges.id')
+            ->where('post_sale.status_id', 1)
+            ->find($id);
+
         if (!$form_postsale) {
-            return abort(404);
+            return abort(404); // Manejo de usuario no encontrado
         }
-        return view('admin.form_postsale.show', compact('form_postsale'));
+
+        $management_types = ManagementTypes::all();
+        $time_ranges = TimeRange::all();
+
+        return view('admin.form_postsale.show', compact('form_postsale', 'management_types', 'time_ranges'));
     }
 
     /**
@@ -216,7 +230,41 @@ class FormPostVentaController extends Controller
         $management_types = ManagementTypes::all();
         $time_ranges = TimeRange::all();
 
-        $form_postsale->load('history'); // Cargar el historial de cambios
+        $form_postsale->load('history');
+
+        // Modifica la colección de historiales para agregar las descripciones antiguas y nuevas
+        $form_postsale->history->transform(function ($change) {
+
+            $field = $change->field_name;
+            $oldValue = $change->old_value;
+            $newValue = $change->new_value;
+
+            if ($field === 'rango horario') {
+                $oldTimeRange = TimeRange::find($oldValue);
+                $newTimeRange = TimeRange::find($newValue);
+
+                if ($oldTimeRange) {
+                    $change->old_value = $oldTimeRange->description;
+                }
+
+                if ($newTimeRange) {
+                    $change->new_value = $newTimeRange->description;
+                }
+            } else if ($field === 'tipo gestión') {
+                $oldManagementTypes = ManagementTypes::find($oldValue);
+                $newManagementTypes = ManagementTypes::find($newValue);
+
+                if ($oldManagementTypes) {
+                    $change->old_value = $oldManagementTypes->management;
+                }
+
+                if ($newManagementTypes) {
+                    $change->new_value = $newManagementTypes->management;
+                }
+            }
+
+            return $change;
+        });
 
         return view('admin.form_postsale.edit', compact('form_postsale', 'management_types', 'time_ranges'));
     }
@@ -316,7 +364,7 @@ class FormPostVentaController extends Controller
         $oldSupportDate = $form_postsale->support_date;
         $oldSurveyDate = $form_postsale->survey_date;
         $oldSurveyText = $form_postsale->survey_text;
-        $oldTimeRanges = $form_postsale->time_ranges;
+        $oldTimeRanges = $form_postsale->time_ranges_id;
         $oldObservation = $form_postsale->observation;
 
         $form_postsale->management_type_id = $request->input('management_types');
@@ -344,7 +392,7 @@ class FormPostVentaController extends Controller
 
         $changes = [];
 
-        if ($oldManagementTypeId !== $request->input('management_types')) {
+        if ($oldManagementTypeId !== intval($request->input('management_types'))) {
             $changes[] = [
                 'field_name' => 'tipo gestión',
                 'field_description' => 'Registro editado',
@@ -364,7 +412,7 @@ class FormPostVentaController extends Controller
 
         if ($oldBusinessName !== $request->input('business_name')) {
             $changes[] = [
-                'field_name' => 'nombre de la empresa',
+                'field_name' => 'razón social',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldBusinessName,
                 'new_value' => $request->input('business_name')
@@ -373,7 +421,7 @@ class FormPostVentaController extends Controller
 
         if ($oldReceivingPerson !== $request->input('receiving_person')) {
             $changes[] = [
-                'field_name' => 'persona que recibe',
+                'field_name' => 'contacto que recepciona',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldReceivingPerson,
                 'new_value' => $request->input('receiving_person')
@@ -382,7 +430,7 @@ class FormPostVentaController extends Controller
 
         if ($oldEmailCustomer !== $request->input('email_customer')) {
             $changes[] = [
-                'field_name' => 'correo electrónico del cliente',
+                'field_name' => 'email',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldEmailCustomer,
                 'new_value' => $request->input('email_customer')
@@ -391,7 +439,7 @@ class FormPostVentaController extends Controller
 
         if ($oldTitularCellphone !== $request->input('titular_cellphone')) {
             $changes[] = [
-                'field_name' => 'teléfono titular',
+                'field_name' => 'celular titular',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldTitularCellphone,
                 'new_value' => $request->input('titular_cellphone')
@@ -427,7 +475,7 @@ class FormPostVentaController extends Controller
 
         if ($oldNewSerial !== $request->input('new_serial')) {
             $changes[] = [
-                'field_name' => 'nuevo número de serie',
+                'field_name' => 'serie nuevo',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldNewSerial,
                 'new_value' => $request->input('new_serial')
@@ -436,7 +484,7 @@ class FormPostVentaController extends Controller
 
         if ($oldModelText !== $request->input('model_text')) {
             $changes[] = [
-                'field_name' => 'texto del modelo',
+                'field_name' => 'modelo',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldModelText,
                 'new_value' => $request->input('model_text')
@@ -454,7 +502,7 @@ class FormPostVentaController extends Controller
 
         if ($oldOldSerial !== $request->input('old_serial')) {
             $changes[] = [
-                'field_name' => 'número de serie anterior',
+                'field_name' => 'serie antiguo',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldOldSerial,
                 'new_value' => $request->input('old_serial')
@@ -463,7 +511,7 @@ class FormPostVentaController extends Controller
 
         if ($oldPickupDate !== $request->input('pickup_date')) {
             $changes[] = [
-                'field_name' => 'fecha de recogida',
+                'field_name' => 'fecha de recojo',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldPickupDate,
                 'new_value' => $request->input('pickup_date')
@@ -490,16 +538,16 @@ class FormPostVentaController extends Controller
 
         if ($oldSurveyText !== $request->input('survey_text')) {
             $changes[] = [
-                'field_name' => 'texto de la encuesta',
+                'field_name' => 'encuesta',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldSurveyText,
                 'new_value' => $request->input('survey_text')
             ];
         }
 
-        if ($oldTimeRanges !== $request->input('time_ranges')) {
+        if ($oldTimeRanges !== intval($request->input('time_ranges'))) {
             $changes[] = [
-                'field_name' => 'rango de tiempo',
+                'field_name' => 'rango horario',
                 'field_description' => 'Registro editado',
                 'old_value' => $oldTimeRanges,
                 'new_value' => $request->input('time_ranges')
@@ -525,7 +573,6 @@ class FormPostVentaController extends Controller
             return response()->json($response);
         }
 
-        dd($changes);
         // Guarda el historial de cambios
         foreach ($changes as $change) {
             PostSaleHistory::create([
@@ -546,7 +593,7 @@ class FormPostVentaController extends Controller
             'type' => 'bg-success'
         ];
 
-
+        return response()->json($response);
     }
 
     /**

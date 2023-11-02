@@ -22,8 +22,8 @@
 <!-- Main JS -->
 <script src="{{ url('assets') }}/js/main.js"></script>
 
-<!-- Page JS -->
-<script src="{{ url('assets') }}/js/dashboards-analytics.js"></script>
+{{-- <!-- Page JS -->
+<script src="{{ url('assets') }}/js/dashboards-analytics.js"></script> --}}
 
 <script src="{{ url('assets') }}/js/util.js"></script>
 

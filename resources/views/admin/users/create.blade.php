@@ -32,7 +32,7 @@
                                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                         class="bx bx-user"></i></span>
                                                 <input type="text" id="name" name="name" autocomplete="off"
-                                                    class="form-control" placeholder="John Doe" aria-label="John Doe"
+                                                    class="form-control uppercase" placeholder="John Doe" aria-label="John Doe"
                                                     aria-describedby="basic-icon-default-fullname2"
                                                     value="{{ old('name') }}">
                                             </div>
@@ -93,6 +93,11 @@
     {{-- <script src="{{ url('assets') }}/js/ui-toasts.js"></script> --}}
     <script>
         $(document).ready(function() {
+
+            $('.uppercase').on('input', function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+
             $('#userForm').on('submit', function(e) {
                 e.preventDefault();
 

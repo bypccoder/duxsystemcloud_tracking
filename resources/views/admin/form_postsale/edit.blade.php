@@ -35,7 +35,8 @@
                                                     class="select2 form-select" data-allow-clear="true">
                                                     <option value="">Seleccione..</option>
                                                     @foreach ($management_types as $management_type)
-                                                        <option @if ($management_type->id == $form_postsale->management_type_id) selected @endif value="{{ $management_type->id }}">
+                                                        <option @if ($management_type->id == $form_postsale->management_type_id) selected @endif
+                                                            value="{{ $management_type->id }}">
                                                             {{ $management_type->management }}</option>
                                                     @endforeach
                                                 </select>
@@ -52,7 +53,8 @@
                                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                         class="bx bxs-id-card"></i></span>
                                                 <input type="text" id="document" name="document" autocomplete="off"
-                                                    class="form-control" placeholder="" value="{{ $form_postsale->document }}">
+                                                    class="form-control" placeholder=""
+                                                    value="{{ $form_postsale->document }}">
                                             </div>
                                         </div>
 
@@ -66,8 +68,8 @@
                                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                         class="bx bx-buildings"></i></span>
                                                 <input type="text" id="business_name" name="business_name"
-                                                    autocomplete="off" class="form-control" placeholder=""
-                                                    value="{{ $form_postsale->business_name }}">
+                                                    autocomplete="off" class="form-control uppercase" placeholder=""
+                                                    value="{{ mb_strtoupper($form_postsale->business_name) }}">
                                             </div>
                                         </div>
 
@@ -80,8 +82,8 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bx-user"></i></span>
                                                 <input type="text" id="receiving_person" name="receiving_person"
-                                                    autocomplete="off" class="form-control"
-                                                    value="{{ $form_postsale->receiving_person }}" />
+                                                    autocomplete="off" class="form-control uppercase"
+                                                    value="{{  mb_strtoupper($form_postsale->receiving_person) }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -92,8 +94,8 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bx-envelope"></i></span>
                                                 <input type="text" id="email_customer" name="email_customer"
-                                                    autocomplete="off" class="form-control"
-                                                    value="{{ $form_postsale->email_customer }}" />
+                                                    autocomplete="off" class="form-control uppercase"
+                                                    value="{{  mb_strtoupper($form_postsale->email_customer) }}" />
                                             </div>
                                         </div>
 
@@ -117,7 +119,7 @@
                                         <label class="col-sm-3 col-form-label" for="address">Dirección</label>
                                         <div class="col-sm-9">
                                             <div class="input-group input-group-merge">
-                                                <textarea id="address" name="address" autocomplete="off" class="form-control">{{ $form_postsale->address }}</textarea>
+                                                <textarea id="address" name="address" autocomplete="off" class="form-control uppercase">{{  mb_strtoupper($form_postsale->address) }}</textarea>
                                             </div>
 
                                         </div>
@@ -128,7 +130,7 @@
                                         <label class="col-sm-3 col-form-label" for="reference">Referencia</label>
                                         <div class="col-sm-9">
                                             <div class="input-group input-group-merge">
-                                                <textarea id="reference" name="reference" autocomplete="off" class="form-control">{{ $form_postsale->reference }}</textarea>
+                                                <textarea id="reference" name="reference" autocomplete="off" class="form-control uppercase">{{  mb_strtoupper($form_postsale->reference) }}</textarea>
                                             </div>
 
                                         </div>
@@ -205,8 +207,8 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bxs-book-content"></i></span>
                                                 <input type="text" id="survey_text" name="survey_text"
-                                                    autocomplete="off" class="form-control"
-                                                    value="{{ $form_postsale->survey_text }}" />
+                                                    autocomplete="off" class="form-control uppercase"
+                                                    value="{{  mb_strtoupper($form_postsale->survey_text) }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -221,7 +223,8 @@
                                                     data-allow-clear="true">
                                                     <option value="">Seleccione..</option>
                                                     @foreach ($time_ranges as $time_range)
-                                                        <option  @if ($time_range->id == $form_postsale->time_ranges_id) selected @endif value="{{ $time_range->id }}">
+                                                        <option @if ($time_range->id == $form_postsale->time_ranges_id) selected @endif
+                                                            value="{{ $time_range->id }}">
                                                             {{ $time_range->description }}</option>
                                                     @endforeach
                                                 </select>
@@ -236,8 +239,8 @@
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bx-folder"></i></span>
                                                 <input type="text" id="model_text" name="model_text"
-                                                    autocomplete="off" class="form-control"
-                                                    value="{{ $form_postsale->model_text }}" />
+                                                    autocomplete="off" class="form-control uppercase"
+                                                    value="{{  mb_strtoupper($form_postsale->model_text) }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -271,7 +274,7 @@
                                         <div class="col-sm-9">
                                             <div class="input-group input-group-merge">
 
-                                                <textarea id="observation" name="observation" autocomplete="off" class="form-control">{{ $form_postsale->observation }}</textarea>
+                                                <textarea id="observation" name="observation" autocomplete="off" class="form-control uppercase">{{  mb_strtoupper($form_postsale->observation) }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -281,7 +284,7 @@
                                             <button type="submit" id="btnRegister" name="btnRegister"
                                                 class="btn btn-sm btn-primary">EDITAR</button>
 
-                                            <a href="{{ route('admin.users.index') }}" id="btn" name="btn"
+                                            <a href="{{ route('admin.form_postsale.index') }}" id="btn" name="btn"
                                                 class="btn btn-sm btn-label-secondary btn-sm"><i
                                                     class="bx bx-arrow-back"></i>
                                                 &nbsp;
@@ -297,85 +300,9 @@
             <div class="col-xl-6">
                 <div class="row">
                     <div class="col-xxl">
-                        <div class="card mb-4">
-                            <div class="card-header d-flex align-items-center justify-content-between">
-                                <h5 class="mb-0">Historial de Cambios</h5>
-                            </div>
-                            <div class="card-body" style="max-height: 385px; overflow-y: auto;">
-                                <div class="chat-container">
-                                    @foreach ($form_postsale->history->sortByDesc('created_at') as $change)
-                                        @if ($change->type_row == 'update')
-                                            <div class="chat-message d-flex mb-2">
-                                                <img width="50" height="50"
-                                                    src="{{ url('assets') }}/img/avatars/default.png"
-                                                    alt="{{ $change->updatedByUser->name }}"
-                                                    class="user-avatar me-2 img-fluid">
-                                                <div class="message-content p-3 border rounded change-message">
-                                                    <p class="message-time text-muted small mb-2">
-                                                        {{ $change->created_at }}
-                                                    </p>
-                                                    <p class="user-name mb-1">{{ $change->updatedByUser->name }}</p>
-                                                    <p class="message-text mb-0">modificó el
-                                                        {{ $change->field_name }} de
-                                                        <span class="text-warning">{{ $change->old_value }}</span> a <span
-                                                            class="text-success">{{ $change->new_value }}</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        @elseif ($change->type_row == 'asign_role')
-                                            <div class="chat-message d-flex mb-2">
-                                                <img width="50" height="50"
-                                                    src="{{ url('assets') }}/img/avatars/default.png"
-                                                    alt="{{ $change->updatedByUser->name }}"
-                                                    class="user-avatar me-2 img-fluid">
-                                                <div class="message-content p-3 border rounded change-message">
-                                                    <p class="message-time text-muted small mb-2">
-                                                        {{ $change->created_at }}
-                                                    </p>
-                                                    <p class="user-name mb-1">{{ $change->updatedByUser->name }}</p>
-                                                    <p class="message-text mb-0">{{ $change->field_description }} el
-                                                        {{ $change->field_name }} :
-                                                        <span class="text-success">{{ $change->new_value }}</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        @elseif ($change->type_row == 'remove_role')
-                                            <div class="chat-message d-flex mb-2">
-                                                <img width="50" height="50"
-                                                    src="{{ url('assets') }}/img/avatars/default.png"
-                                                    alt="{{ $change->updatedByUser->name }}"
-                                                    class="user-avatar me-2 img-fluid">
-                                                <div class="message-content p-3 border rounded change-message">
-                                                    <p class="message-time text-muted small mb-2">
-                                                        {{ $change->created_at }}
-                                                    </p>
-                                                    <p class="user-name mb-1">{{ $change->updatedByUser->name }}</p>
-                                                    <p class="message-text mb-0">{{ $change->field_description }} el
-                                                        {{ $change->field_name }} :
-                                                        <span class="text-danger">{{ $change->old_value }}</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        @else
-                                            <div class="chat-message d-flex mb-2">
-                                                <img width="50" height="50"
-                                                    src="{{ url('assets') }}/img/avatars/default.png"
-                                                    alt="{{ $change->updatedByUser->name }}"
-                                                    class="user-avatar me-2 img-fluid">
-                                                <div class="message-content p-3 border rounded change-message">
-                                                    <p class="message-time text-muted small mb-2">
-                                                        {{ $change->created_at }}
-                                                    </p>
-                                                    <p class="user-name mb-1">{{ $change->updatedByUser->name }}</p>
-                                                    <p class="message-text mb-0">{{ $change->field_description }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
+                        @include('layouts.history', [
+                            'history' => $form_postsale->history->sortByDesc('created_at'),
+                        ])
 
                     </div>
                 </div>
@@ -388,6 +315,10 @@
     <script>
         function showManagementTypes() {
             $(".divChangeLogic").addClass("d-none");
+
+            if (management_types !== ""){
+                $("#divSale_date input, #divChange_date input, #divPickup_date input, #divSupport_date input, #divSurvey_date input, #divNew_serial input, #divOld_serial input, #divModel_text input, #survey_text input").val('');
+            }
 
             let management_types = $("#management_types").val();
 
@@ -405,6 +336,11 @@
         }
 
         $(document).ready(function() {
+
+            $('.uppercase').on('input', function () {
+                $(this).val($(this).val().toUpperCase());
+            });
+
 
             showManagementTypes();
 

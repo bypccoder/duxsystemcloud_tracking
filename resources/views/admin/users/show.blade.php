@@ -18,14 +18,14 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Nombre</label>
                                     <div class="col-sm-10">
-                                        <p>{{ $user->name }}</p>
+                                        <p>{{  mb_strtoupper($user->name) }}</p>
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label class="col-sm-2 col-form-label">Email</label>
                                     <div class="col-sm-10">
-                                        <p>{{ $user->email }}</p>
+                                        <p>{{  $user->email }}</p>
                                     </div>
                                 </div>
 
