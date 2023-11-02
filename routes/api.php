@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\FormPostVentaController;
+use App\Http\Controllers\FormPostSaleController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -14,9 +14,9 @@ Route::middleware('auth:api')->group(function(){
 
 Route::prefix('postventa')->middleware('auth:api')->group(function () {
     // Rutas relacionadas con las task
-    Route::get('news/{userid}', [FormPostVentaController::class, 'news']); // Lista de tareas nuevas
-    Route::get('olds/{userid}', [FormPostVentaController::class, 'olds']); // Lista de tareas antiguas
-    Route::get('/{id}', [FormPostVentaController::class, 'showforapp']); // Ver una tarea
-    Route::post('/', [FormPostVentaController::class, 'storeapp']); // Registrar una tarea
-    Route::put('/{id}', [FormPostVentaController::class, 'update']); // Modificar una tarea (falta crear su api)
+    Route::get('news/{userid}', [FormPostSaleController::class, 'news']); // Lista de tareas nuevas
+    Route::get('olds/{userid}', [FormPostSaleController::class, 'olds']); // Lista de tareas antiguas
+    Route::get('/{id}', [FormPostSaleController::class, 'showforapp']); // Ver una tarea
+    Route::post('/', [FormPostSaleController::class, 'storeapp']); // Registrar una tarea
+    Route::put('/{id}', [FormPostSaleController::class, 'update']); // Modificar una tarea (falta crear su api)
 });
