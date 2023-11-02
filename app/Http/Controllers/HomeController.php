@@ -33,9 +33,9 @@ class HomeController extends Controller
 
         $user = Auth::user();
         if ($user->hasRole('Admin')) {
-            return redirect()->route('admin.dashboard.show');
+            return redirect()->route('admin.dashboard.index');
         } elseif ($user->hasRole('Backoffice')) {
-            return redirect()->route('admin.dashboard.show');
+            return redirect()->route('admin.dashboard.index');
         } elseif ($user->hasRole('Post-Venta')) {
             return redirect()->route('admin.form_postsale.index');
         }
