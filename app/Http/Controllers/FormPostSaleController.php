@@ -623,7 +623,7 @@ class FormPostSaleController extends Controller
             $message = 'No se encontraron tareas';
             $postsales = '';
         }
-        return compact('success', 'message', 'postsale');
+        return compact('success', 'message', 'postsales');
     }
 
     public function olds($userid){
@@ -645,7 +645,7 @@ class FormPostSaleController extends Controller
             $message = 'No se encontraron tareas';
             $postsales = '';
         }
-        return compact('success', 'message', 'postsale');
+        return compact('success', 'message', 'postsales');
     }
 
     public function showforapp($idpostsale){
