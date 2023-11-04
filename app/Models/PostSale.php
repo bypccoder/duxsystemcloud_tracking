@@ -20,30 +20,32 @@ class PostSale extends Model
         'reference',
         'equipment_type',
         'model_text',
+        'old_serial',
         'survey_text',
-        'time_ranges_id',
+        'time_ranges_id', //FK
         'record_type',
-        'management_type_id',
-        'warehouse_state_type_id',
+        'management_type_id', //FK
+        'warehouse_state_type_id', //FK
         'new_serial',
         'change_date',
         'sale_date',
         'pickup_date',
         'support_date',
         'survey_date',
-        'survey_id',
-        'model_id',
-        'equipment_id',
+        'survey_id', //FK
+        'model_id', //FK
+        'equipment_id', //FK
         'serial',
         'email_customer',
-        'result1_backs_id',
-        'result2_backs_id',
+        'result1_backs_id', //FK
+        'result2_backs_id', //FK
         'diary_date',
         'diary_time',
         'delivery_date',
         'delivery_time',
-        'motorized_id',
+        'motorized_id ', //FK
         'observation',
+        'status_id',
         'created_by',
         'updated_by'
     ];
