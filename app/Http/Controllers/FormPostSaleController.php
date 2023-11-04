@@ -606,14 +606,11 @@ class FormPostSaleController extends Controller
 
     public function news($userid){
         // Obtén todos los contrato desde la base de datos
-        $postsales = PostSale::select()
-        //->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id ')
-        //->join('area', 'area.id_area', '=', 'clientearea.id_area')
-        //->join('cliente', 'contrato.id_cliente', '=', 'cliente.id_cliente')
-        //->join('tipocontrato', 'contrato.id_tipocontrato', '=', 'tipocontrato.id_tipocontrato')
-        //->join('estadocontrato', 'contrato.id_estadocontrato', '=', 'estadocontrato.id_estadocontrato')
+        $postsales = PostSale::select('post_sale.id', 'post_sale.document', 'post_sale.business_name', 'post_sale.time_ranges_id', 'time_ranges.description')
+        ->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id')
         ->where('motorized_id', $userid)
-        ->limit(4)
+        ->orderBy('time_ranges_id', 'asc')
+        ->limit(5)
         ->get();
         if($postsales->count() > 0){
             $success = true;
@@ -628,14 +625,11 @@ class FormPostSaleController extends Controller
 
     public function olds($userid){
         // Obtén todos los contrato desde la base de datos
-        $postsales = PostSale::select()
-        //->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id ')
-        //->join('area', 'area.id_area', '=', 'clientearea.id_area')
-        //->join('cliente', 'contrato.id_cliente', '=', 'cliente.id_cliente')
-        //->join('tipocontrato', 'contrato.id_tipocontrato', '=', 'tipocontrato.id_tipocontrato')
-        //->join('estadocontrato', 'contrato.id_estadocontrato', '=', 'estadocontrato.id_estadocontrato')
+        $postsales = PostSale::select('post_sale.id', 'post_sale.document', 'post_sale.business_name', 'post_sale.time_ranges_id')
+        //->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id')
         ->where('motorized_id', $userid)
-        //->limit(4)
+        //->orderBy('time_ranges_id', 'asc')
+        ->limit(5)
         ->get();
         if($postsales->count() > 0){
             $success = true;

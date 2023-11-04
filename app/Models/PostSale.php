@@ -54,9 +54,4 @@ class PostSale extends Model
     {
         return $this->hasMany(PostSaleHistory::class);
     }
-
-    public function estadocontrato()
-    {
-        return $this->hasOne(TimeRanges::class,'id','time_ranges_id');
-    }
 }
