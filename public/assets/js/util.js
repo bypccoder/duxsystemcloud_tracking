@@ -5,7 +5,7 @@ const ToastManager = {
         toastElement.setAttribute('role', 'alert');
         toastElement.setAttribute('aria-live', 'assertive');
         toastElement.setAttribute('aria-atomic', 'true');
-        toastElement.setAttribute('data-bs-delay', '2000');
+        toastElement.setAttribute('data-bs-delay',"5000");
         toastElement.innerHTML = `<div class="toast-header">
             <i class="bx bx-bell me-2"></i>
             <div class="me-auto fw-medium">${title}</div>

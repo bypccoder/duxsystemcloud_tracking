@@ -34,5 +34,8 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'admin.form_postsale.edit'])->syncRoles([$role1,$role4]);
         Permission::create(['name'=>'admin.form_postsale.destroy'])->syncRoles([$role1,$role4]);
 
+        Permission::create(['name'=>'admin.import_salenew.index'])->syncRoles([$role1,$role4]);
+        Permission::create(['name'=>'admin.import_salenew.import'])->syncRoles([$role1,$role4]);
+
     }
 }

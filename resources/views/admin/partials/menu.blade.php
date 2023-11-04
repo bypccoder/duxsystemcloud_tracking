@@ -16,7 +16,9 @@
             ['route' => 'admin.tasks.index', 'text' => 'Agendados', 'tipoTab' => 'agendados', 'icon' => 'bx bx-sort-alt-2'],
             ['route' => 'admin.tasks.index', 'text' => 'Reprogramados', 'tipoTab' => 'reprogramados', 'icon' => 'bx bx-cog'],
             ['route' => 'admin.tasks.index', 'text' => 'Rechazados', 'tipoTab' => 'rechazados', 'icon' => 'bx bx-shield-x'],
+            ['route' => 'admin.import_salenew.index', 'text' => 'Importación', 'tipoTab' => '', 'icon' => 'bx bxs-file-import'],
             ['route' => 'admin.form_postsale.index', 'text' => 'Post Venta', 'tipoTab' => '', 'icon' => 'bx bxs-user-detail'],
+
 
         ];
 

@@ -58,6 +58,12 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::put('/form_postsale/update/{id}',  [App\Http\Controllers\FormPostSaleController::class, 'update'])->name('admin.form_postsale.update');
 
+    Route::get('/import_salenew', [App\Http\Controllers\ImportSaleNewController::class, 'index'])->name('admin.import_salenew.index');
+
+    Route::post('/import_salenew/import', [App\Http\Controllers\ImportSaleNewController::class, 'import'])->name('admin.import_salenew.import');
+
+    Route::get('/import_salenew/export', [App\Http\Controllers\ImportSaleNewController::class, 'export'])->name('admin.import_salenew.export');
+
 });
 
 

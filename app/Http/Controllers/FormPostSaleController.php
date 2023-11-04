@@ -6,7 +6,6 @@ use App\Models\ManagementTypes;
 use App\Models\PostSale;
 use App\Models\PostSaleHistory;
 use App\Models\TimeRange;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -386,6 +385,8 @@ class FormPostSaleController extends Controller
         $form_postsale->survey_text = $request->input('survey_text');
         $form_postsale->time_ranges_id = $request->input('time_ranges');
         $form_postsale->observation = $request->input('observation');
+        $form_postsale->updated_by = Auth::id();
+
 
         $form_postsale->save();
 
