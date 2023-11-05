@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedInteger('total_rows');
-            $table->unsignedInteger('erros_rows');
-            $table->unsignedInteger('success_rows');
+            $table->unsignedInteger('errors_rows')->default(0);
+            $table->unsignedInteger('success_rows')->default(0);
+            $table->string('url_success_rows', 250)->nullable();
+            $table->string('url_errors_rows', 250)->nullable();
             // $table->string('document', 250);
             // $table->string('business_name', 250);
             // $table->string('titular_cellphone', 250);

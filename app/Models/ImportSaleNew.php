@@ -16,6 +16,8 @@ class ImportSaleNew extends Model
         'total_rows',
         'erros_rows',
         'success_rows',
+        'url_success_rows',
+        'url_errors_rows',
         'created_by',
         'updated_by'
     ];

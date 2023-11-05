@@ -16,6 +16,7 @@
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Tipo Registro</th>
                             <th>Documento</th>
                             <th>Razón Social</th>
                             <th>Tipo de Gestión</th>
@@ -35,6 +36,9 @@
         var configParams = {
             columns: [{
                     data: 'id'
+                },
+                {
+                    data: 'record_type'
                 },
                 {
                     data: 'document'

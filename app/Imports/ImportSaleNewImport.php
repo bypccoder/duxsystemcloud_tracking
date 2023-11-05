@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\PostSale;
+use App\Models\TimeRange;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -20,10 +21,12 @@ class ImportSaleNewImport implements ToModel, WithHeadingRow
     public $totalRows = 0;
     public $errorRows = 0;
     public $successRows = 0;
+    private $time_range;
 
     public function __construct($type_format)
     {
         $this->type_format = $type_format;
+        $this->time_range = TimeRange::pluck('id','description');
     }
 
 
@@ -40,7 +43,7 @@ class ImportSaleNewImport implements ToModel, WithHeadingRow
             'address' => $row['direccion'],
             'reference' => $row['referencia'],
             'sale_date' => $row['fecha_venta'],
-            'time_ranges_id' => 1,
+            'time_ranges_id' => $this->time_range[($row['rango_horario'])],
             'model_text' => $row['modelo'],
             'new_serial' => $row['serie_nueva'],
             'observation' => $row['observaciones'],
