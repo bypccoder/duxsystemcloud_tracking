@@ -59,10 +59,12 @@
                                             class="btn btn-info btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
                                             FORMATO</a>
                                         <a href="javascript:none;" id="error-link" name="error-link"
-                                            class="btn btn-outline-danger btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
+                                            class="btn btn-outline-danger btn-sm col-sm-2 d-none"><i
+                                                class="bx bxs-download"></i>
                                             ERRORES</a>
                                         <a href="javascript:none;" id="success-link" name="error-link"
-                                            class="btn btn-outline-success btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
+                                            class="btn btn-outline-success btn-sm col-sm-2 d-none"><i
+                                                class="bx bxs-download"></i>
                                             CORRECTOS</a>
                                     </div>
 
@@ -122,6 +124,15 @@
                             message: data.message,
                             type: data.type
                         });
+
+                        if (data.download_url_success) {
+                            var successLink = $('#success-link');
+                            successLink.attr('href',
+                                "{{ route('admin.import_salenew.export_success') }}" +
+                                '?nameFile=' + data.download_url_success);
+                            successLink.removeClass('d-none');
+                        }
+
                         if (xhr.status === 200) {
                             setTimeout(() => {
                                 //window.location.href = 'form_postsale';
@@ -164,7 +175,7 @@
                                 successLink.attr('href',
                                     "{{ route('admin.import_salenew.export_success') }}" +
                                     '?nameFile=' + data.download_url_success);
-                                    successLink.removeClass('d-none');
+                                successLink.removeClass('d-none');
                             }
 
                         }
