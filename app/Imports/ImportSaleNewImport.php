@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\ImportSaleNew;
+use App\Models\PostSale;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -31,7 +32,7 @@ class ImportSaleNewImport implements ToModel, WithHeadingRow
         if ($type_format == 1) {
             $errors = $this->validateRowFormatNewSale($row);
             if (empty($errors)) {
-                return new ImportSaleNew([
+                return new PostSale([
                     'document' => $row['documento'],
                     'business_name' => $row['razon_social'],
                     'receiving_person' => $row['contacto_que_recepciona'],

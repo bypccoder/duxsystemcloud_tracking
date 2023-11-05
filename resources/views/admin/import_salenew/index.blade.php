@@ -48,7 +48,7 @@
 
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label" for="fileImport">Archivo</label>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bxs-file-import"></i></span>
                                                 <input type="file" id="fileImport" name="fileImport" autocomplete="off"
@@ -58,6 +58,10 @@
                                         <a href="javascript:none;" id="formato-link" name="formato-link"
                                             class="btn btn-success btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
                                             DESCARGAR FORMATO</a>
+
+                                        <a href="javascript:none;" id="error-link" name="error-link"
+                                            class="btn btn-danger btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
+                                            DESCARGAR ERRORES</a>
                                     </div>
 
                                     <div id="name-error text-danger"></div>
@@ -85,9 +89,8 @@
 @section('scripts')
     <script>
         $(document).ready(function() {
-            // Detecta el cambio en el tipo de gestión
-            var formatoLink = $(
-                '#formato-link'); // Mueve esta línea aquí para que formatoLink esté definido antes de su uso
+
+            var formatoLink = $('#formato-link');
             $('#management_types').on('change', function() {
                 formatoLink.addClass('d-none');
                 var selectedType = $(this).val();
@@ -101,6 +104,7 @@
                 var url = $(this).attr('href');
                 window.open(url, '_blank');
             });
+
             $('#postImportNewSaleForm').on('submit', function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
@@ -110,15 +114,17 @@
                     data: formData,
                     processData: false,
                     contentType: false,
-                    success: function(data) {
+                    success: function(data, textStatus, xhr) {
                         ToastManager.createCustomToast({
                             title: data.title,
                             message: data.message,
                             type: 'bg-danger'
                         });
-                        setTimeout(() => {
-                            //window.location.href = data.redirect;
-                        }, 3000);
+                        if (xhr.status === 200) {
+                            setTimeout(() => {
+                                window.location.href = 'form_postsale';
+                            }, 3000);
+                        }
                     },
                     error: function(data) {
                         if (data.status === 422) {
@@ -135,16 +141,25 @@
                             var response = data.responseText;
                             var data = JSON.parse(response);
 
-                            alert(data.download_url);
+                            //alert(data.download_url);
                             ToastManager.createCustomToast({
                                 title: data.title,
                                 message: data.message,
                                 type: data.type
                             });
+
+
+                            if (data.download_url) {
+                                var errorLink = $('#error-link');
+                                errorLink.attr('href', "{{ route('admin.import_salenew.export_errors') }}" + '?nameFile=' +data.download_url);
+                                errorLink.removeClass('d-none');
+                            }
+
                         }
                     }
                 });
             });
+
         });
     </script>
 @endsection

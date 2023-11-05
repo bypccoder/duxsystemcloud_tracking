@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Response;
 use Exception;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 
 class ImportSaleNewController extends Controller
@@ -45,21 +46,34 @@ class ImportSaleNewController extends Controller
 
         $invalidRecordsExport = new InvalidRecordsExport($invalidRecords);
 
-        $exportFileName = 'error_sale_new/invalid_records.xlsx';
-        Excel::store($invalidRecordsExport, $exportFileName, 'public');
-        $exportedFileUrl = asset('storage/' . $exportFileName);
-
-        $response = [
-            'redirect' => '',
-            'title' => 'Error',
-            'message' => 'Se encontró registros con errores en la importación',
-            'type' => 'bg-danger',
-            'download_url' => $exportedFileUrl
-        ];
+        if (empty($invalidRecords)) {
+            $response = [
+                'redirect' => 'admin.import_salenew.index',
+                'title' => 'Éxito',
+                'message' => 'Todos los registros se importaron correctamente.',
+                'type' => 'bg-success',
+                'download_url' => ''
+            ];
 
 
-        return response()->json($response);
+            return response()->json($response, 200);
+        } else {
+            $nameFileName = 'invalid_records_' . Date::now()->format('YmdHis') . '.xlsx';
+            $exportFileName = 'error_sale_new/invalid_records_' . Date::now()->format('YmdHis') . '.xlsx';
+            Excel::store($invalidRecordsExport, $exportFileName, 'public');
+            $exportedFileUrl = asset('storage/' . $exportFileName);
 
+            $response = [
+                'redirect' => '',
+                'title' => 'Error',
+                'message' => 'Se encontró registros con errores en la importación',
+                'type' => 'bg-danger',
+                'download_url' => $nameFileName
+            ];
+
+
+            return response()->json($response, 500);
+        }
     }
 
     public function export(Request $request)
@@ -103,5 +117,23 @@ class ImportSaleNewController extends Controller
             // El archivo no existe, puedes manejar el error de acuerdo a tus necesidades
             return abort(404);
         }
+    }
+
+    public function export_errors(Request $request)
+    {
+
+        $file = $request->query('nameFile');
+        $routeFile = storage_path('app/public/error_sale_new/'.$file);
+        $nameFile = basename($routeFile);
+
+        if (file_exists($routeFile)) {
+            $headers = [
+                'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            ];
+            return Response::download($routeFile, $nameFile, $headers);
+        } else {
+            return abort(404);
+        }
+
     }
 }
