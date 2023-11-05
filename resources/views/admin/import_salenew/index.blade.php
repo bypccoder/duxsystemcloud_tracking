@@ -48,7 +48,7 @@
 
                                     <div class="row mb-3">
                                         <label class="col-sm-2 col-form-label" for="fileImport">Archivo</label>
-                                        <div class="col-sm-5">
+                                        <div class="col-sm-4">
                                             <div class="input-group input-group-merge">
                                                 <span class="input-group-text"><i class="bx bxs-file-import"></i></span>
                                                 <input type="file" id="fileImport" name="fileImport" autocomplete="off"
@@ -56,12 +56,14 @@
                                             </div>
                                         </div>
                                         <a href="javascript:none;" id="formato-link" name="formato-link"
-                                            class="btn btn-success btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
-                                            DESCARGAR FORMATO</a>
-
+                                            class="btn btn-info btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
+                                            FORMATO</a>
                                         <a href="javascript:none;" id="error-link" name="error-link"
-                                            class="btn btn-danger btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
-                                            DESCARGAR ERRORES</a>
+                                            class="btn btn-outline-danger btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
+                                            ERRORES</a>
+                                        <a href="javascript:none;" id="success-link" name="error-link"
+                                            class="btn btn-outline-success btn-sm col-sm-2 d-none"><i class="bx bxs-download"></i>
+                                            CORRECTOS</a>
                                     </div>
 
                                     <div id="name-error text-danger"></div>
@@ -118,11 +120,11 @@
                         ToastManager.createCustomToast({
                             title: data.title,
                             message: data.message,
-                            type: 'bg-danger'
+                            type: data.type
                         });
                         if (xhr.status === 200) {
                             setTimeout(() => {
-                                window.location.href = 'form_postsale';
+                                //window.location.href = 'form_postsale';
                             }, 3000);
                         }
                     },
@@ -149,10 +151,20 @@
                             });
 
 
-                            if (data.download_url) {
+                            if (data.download_url_error) {
                                 var errorLink = $('#error-link');
-                                errorLink.attr('href', "{{ route('admin.import_salenew.export_errors') }}" + '?nameFile=' +data.download_url);
+                                errorLink.attr('href',
+                                    "{{ route('admin.import_salenew.export_errors') }}" +
+                                    '?nameFile=' + data.download_url_error);
                                 errorLink.removeClass('d-none');
+                            }
+
+                            if (data.download_url_success) {
+                                var successLink = $('#success-link');
+                                successLink.attr('href',
+                                    "{{ route('admin.import_salenew.export_success') }}" +
+                                    '?nameFile=' + data.download_url_success);
+                                    successLink.removeClass('d-none');
                             }
 
                         }

@@ -2,7 +2,6 @@
 
 namespace App\Imports;
 
-use App\Models\ImportSaleNew;
 use App\Models\PostSale;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -16,8 +15,11 @@ class ImportSaleNewImport implements ToModel, WithHeadingRow
 
     protected $type_format;
     protected $errors = [];
-    protected $successData = [];
     protected $invalidRecords = [];
+    protected $successRecords = [];
+    public $totalRows = 0;
+    public $errorRows = 0;
+    public $successRows = 0;
 
     public function __construct($type_format)
     {
@@ -29,157 +31,69 @@ class ImportSaleNewImport implements ToModel, WithHeadingRow
     {
         $type_format = intval($this->type_format);
 
+        $modelData = [
+            'document' => $row['documento'],
+            'business_name' => $row['razon_social'],
+            'receiving_person' => $row['contacto_que_recepciona'],
+            'email_customer' => $row['email'],
+            'titular_cellphone' => $row['celular_del_titular'],
+            'address' => $row['direccion'],
+            'reference' => $row['referencia'],
+            'sale_date' => $row['fecha_venta'],
+            'time_ranges_id' => 1,
+            'model_text' => $row['modelo'],
+            'new_serial' => $row['serie_nueva'],
+            'observation' => $row['observaciones'],
+            'record_type' => 'importacion',
+            'management_type_id' => $type_format,
+            'created_by' => Auth::id(),
+            'updated_by' => Auth::id()
+
+        ];
+
         if ($type_format == 1) {
+            $modelData['sale_date'] = $row['fecha_venta'];
+            $modelData['time_ranges_id'] = 1;
+            $modelData['new_serial'] = $row['serie_nueva'];
             $errors = $this->validateRowFormatNewSale($row);
-            if (empty($errors)) {
-                return new PostSale([
-                    'document' => $row['documento'],
-                    'business_name' => $row['razon_social'],
-                    'receiving_person' => $row['contacto_que_recepciona'],
-                    'email_customer' => $row['email'],
-                    'titular_cellphone' => $row['celular_del_titular'],
-                    'address' => $row['direccion'],
-                    'reference' => $row['referencia'],
-                    'sale_date' => $row['fecha_venta'],
-                    'time_ranges_id' => 1,
-                    'model_text' => $row['modelo'],
-                    'new_serial' => $row['serie_nueva'],
-                    'observation' => $row['observaciones'],
-                    'management_type_id' => $type_format,
-                    'created_by' => Auth::id(),
-                    'updated_by' => Auth::id()
-
-                ]);
-            } else {
-
-                $this->invalidRecords[] = [
-                    'row' => $row,
-                    'errors' => $errors,
-                ];
-
-                return null;
-            }
         } else if ($type_format == 2) {
-            $errors = $this->validateRowFormatChange($row);
-            if (empty($errors)) {
-                return new ImportSaleNew([
-                    'document' => $row['documento'],
-                    'business_name' => $row['razon_social'],
-                    'receiving_person' => $row['contacto_que_recepciona'],
-                    'email_customer' => $row['email'],
-                    'titular_cellphone' => $row['celular_del_titular'],
-                    'address' => $row['direccion'],
-                    'reference' => $row['referencia'],
-                    'sale_change' => $row['fecha_cambio'],
-                    'time_ranges_id' => 1,
-                    'model_text' => $row['modelo'],
-                    'old_serial' => $row['serie_antiguo'],
-                    'observation' => $row['observaciones'],
-                    'management_type_id' => $type_format,
-                    'created_by' => Auth::id(),
-                    'updated_by' => Auth::id()
+            $modelData['sale_change'] = $row['fecha_cambio'];
+            $modelData['time_ranges_id'] = 1;
+            $modelData['old_serial'] = $row['serie_antiguo'];
+            $errors = $this->validateRowFormatChange($modelData);
+        } elseif ($type_format == 3) {
+            $modelData['pickup_date'] = $row['fecha_recojo'];
+            $modelData['time_ranges_id'] = 1;
+            $modelData['old_serial'] = $row['serie_antiguo'];
+            $errors = $this->validateRowFormatPickup($modelData);
+        } elseif ($type_format == 4) {
+            $modelData['support_date'] = $row['fecha_soporte'];
+            $modelData['time_ranges_id'] = 1;
+            $modelData['old_serial'] = $row['serie_antiguo'];
+            $errors = $this->validateRowFormatSupport($modelData);
+        } elseif ($type_format == 5) {
+            $modelData['survey_date'] = $row['fecha_encuesta'];
+            $modelData['time_ranges_id'] = 1;
+            $modelData['survey'] = $row['encuesta'];
+            $errors = $this->validateRowFormatSurvey($modelData);
+        }
 
-                ]);
-            } else {
+        $this->totalRows++;
 
-                $this->invalidRecords[] = [
-                    'row' => $row,
-                    'errors' => $errors,
-                ];
+        if (empty($errors)) {
+            $this->successRows++;
+            $this->successRecords[] = [
+                'row' => $row
+            ];
+            return new PostSale($modelData);
+        } else {
+            $this->errorRows++;
+            $this->invalidRecords[] = [
+                'row' => $row,
+                'errors' => $errors,
+            ];
 
-                return null;
-            }
-        } else if ($type_format == 3) {
-
-            $errors = $this->validateRowFormatPickup($row);
-            if (empty($errors)) {
-                return new ImportSaleNew([
-                    'document' => $row['documento'],
-                    'business_name' => $row['razon_social'],
-                    'receiving_person' => $row['contacto_que_recepciona'],
-                    'email_customer' => $row['email'],
-                    'titular_cellphone' => $row['celular_del_titular'],
-                    'address' => $row['direccion'],
-                    'reference' => $row['referencia'],
-                    'pickup_date' => $row['fecha_recojo'],
-                    'time_ranges_id' => 1,
-                    'model_text' => $row['modelo'],
-                    'old_serial' => $row['serie_antiguo'],
-                    'observation' => $row['observaciones'],
-                    'management_type_id' => $type_format,
-                    'created_by' => Auth::id(),
-                    'updated_by' => Auth::id()
-
-                ]);
-            } else {
-
-                $this->invalidRecords[] = [
-                    'row' => $row,
-                    'errors' => $errors,
-                ];
-
-                return null;
-            }
-        } else if ($type_format == 4) {
-            $errors = $this->validateRowFormatSupport($row);
-            if (empty($errors)) {
-                return new ImportSaleNew([
-                    'document' => $row['documento'],
-                    'business_name' => $row['razon_social'],
-                    'receiving_person' => $row['contacto_que_recepciona'],
-                    'email_customer' => $row['email'],
-                    'titular_cellphone' => $row['celular_del_titular'],
-                    'address' => $row['direccion'],
-                    'reference' => $row['referencia'],
-                    'support_date' => $row['fecha_soporte'],
-                    'time_ranges_id' => 1,
-                    'model_text' => $row['modelo'],
-                    'old_serial' => $row['serie_antiguo'],
-                    'observation' => $row['observaciones'],
-                    'management_type_id' => $type_format,
-                    'created_by' => Auth::id(),
-                    'updated_by' => Auth::id()
-
-                ]);
-            } else {
-
-                $this->invalidRecords[] = [
-                    'row' => $row,
-                    'errors' => $errors,
-                ];
-
-                return null;
-            }
-        } else if ($type_format == 5) {
-
-            $errors = $this->validateRowFormatSurvey($row);
-            if (empty($errors)) {
-                return new ImportSaleNew([
-                    'document' => $row['documento'],
-                    'business_name' => $row['razon_social'],
-                    'receiving_person' => $row['contacto_que_recepciona'],
-                    'email_customer' => $row['email'],
-                    'titular_cellphone' => $row['celular_del_titular'],
-                    'address' => $row['direccion'],
-                    'reference' => $row['referencia'],
-                    'survey_date' => $row['fecha_encuesta'],
-                    'time_ranges_id' => 1,
-                    'survey' => $row['encuesta'],
-                    'observation' => $row['observaciones'],
-                    'management_type_id' => $type_format,
-                    'created_by' => Auth::id(),
-                    'updated_by' => Auth::id()
-
-                ]);
-            } else {
-
-                $this->invalidRecords[] = [
-                    'row' => $row,
-                    'errors' => $errors,
-                ];
-
-                return null;
-            }
+            return null;
         }
     }
 
@@ -534,9 +448,9 @@ class ImportSaleNewImport implements ToModel, WithHeadingRow
         return $this->errors;
     }
 
-    public function getSuccessData()
+    public function getSuccessRecords()
     {
-        return $this->successData;
+        return $this->successRecords;
     }
 
     public function getInvalidRecords()

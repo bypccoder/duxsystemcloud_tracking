@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Exports\InvalidRecordsExport;
+use App\Exports\SuccessRecordsExport;
 use App\Models\ManagementTypes;
 use App\Imports\ImportSaleNewImport;
+use App\Models\ImportSaleNew;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Response;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\Storage;
 
@@ -43,32 +46,65 @@ class ImportSaleNewController extends Controller
         Excel::import($import, $request->file('fileImport'));
 
         $invalidRecords = $import->getInvalidRecords();
+        $successRecords = $import->getSuccessRecords();
+
+        $totalRows = $import->totalRows;
+        $successRows = $import->successRows;
+        $errorRows = $import->errorRows;
+
+        $importSaleNew = new ImportSaleNew([
+            'name' => 'import_file_' . Date::now()->format('YmdHis') . '.xlsx',
+            'total_rows' => $totalRows,
+            'erros_rows' => $errorRows,
+            'success_rows' => $successRows,
+            'created_by' => Auth::id(),
+            'updated_by' => Auth::id()
+        ]);
+        $importSaleNew->save();
+
 
         $invalidRecordsExport = new InvalidRecordsExport($invalidRecords);
+        $successRecordsExport = new SuccessRecordsExport($successRecords);
+
+
+
 
         if (empty($invalidRecords)) {
+
+            //Archivo Registros Correctos
+            $nameFileNameSuccess = 'success_records_' . Date::now()->format('YmdHis') . '.xlsx';
+            $exportFileNameSuccess = 'success_sale_new/success_records_' . Date::now()->format('YmdHis') . '.xlsx';
+            Excel::store($successRecordsExport, $exportFileNameSuccess, 'public');
+
             $response = [
                 'redirect' => 'admin.import_salenew.index',
                 'title' => 'Éxito',
                 'message' => 'Todos los registros se importaron correctamente.',
                 'type' => 'bg-success',
-                'download_url' => ''
+                'download_url_success' => $nameFileNameSuccess,
             ];
 
-
             return response()->json($response, 200);
+
         } else {
-            $nameFileName = 'invalid_records_' . Date::now()->format('YmdHis') . '.xlsx';
-            $exportFileName = 'error_sale_new/invalid_records_' . Date::now()->format('YmdHis') . '.xlsx';
-            Excel::store($invalidRecordsExport, $exportFileName, 'public');
-            $exportedFileUrl = asset('storage/' . $exportFileName);
+            //Archivos Registros Inválidos
+            $nameFileNameErros = 'invalid_records_' . Date::now()->format('YmdHis') . '.xlsx';
+            $exportFileNameErrors = 'error_sale_new/invalid_records_' . Date::now()->format('YmdHis') . '.xlsx';
+            Excel::store($invalidRecordsExport, $exportFileNameErrors, 'public');
+            //$exportedFileUrlErrors = asset('storage/' . $exportFileNameErrors);
+
+            //Archivos de Registros Correctos
+            $nameFileNameSuccess = 'success_records_' . Date::now()->format('YmdHis') . '.xlsx';
+            $exportFileNameSuccess = 'success_sale_new/success_records_' . Date::now()->format('YmdHis') . '.xlsx';
+            Excel::store($successRecordsExport, $exportFileNameSuccess, 'public');
 
             $response = [
                 'redirect' => '',
                 'title' => 'Error',
                 'message' => 'Se encontró registros con errores en la importación',
                 'type' => 'bg-danger',
-                'download_url' => $nameFileName
+                'download_url_error' => $nameFileNameErros,
+                'download_url_success' => $nameFileNameSuccess,
             ];
 
 
@@ -123,7 +159,7 @@ class ImportSaleNewController extends Controller
     {
 
         $file = $request->query('nameFile');
-        $routeFile = storage_path('app/public/error_sale_new/'.$file);
+        $routeFile = storage_path('app/public/error_sale_new/' . $file);
         $nameFile = basename($routeFile);
 
         if (file_exists($routeFile)) {
@@ -134,6 +170,22 @@ class ImportSaleNewController extends Controller
         } else {
             return abort(404);
         }
+    }
 
+    public function export_success(Request $request)
+    {
+
+        $file = $request->query('nameFile');
+        $routeFile = storage_path('app/public/success_sale_new/' . $file);
+        $nameFile = basename($routeFile);
+
+        if (file_exists($routeFile)) {
+            $headers = [
+                'Content-Type' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            ];
+            return Response::download($routeFile, $nameFile, $headers);
+        } else {
+            return abort(404);
+        }
     }
 }

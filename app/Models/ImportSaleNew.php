@@ -12,26 +12,10 @@ class ImportSaleNew extends Model
     protected $table = 'import_sale_new';
 
     protected $fillable = [
-        'document',
-        'business_name',
-        'titular_cellphone',
-        'receiving_person',
-        'address',
-        'reference',
-        'equipment_type',
-        'model_text',
-        'survey_text',
-        'time_ranges_id',
-        'record_type',
-        'management_type_id',
-        'new_serial',
-        'change_date',
-        'sale_date',
-        'pickup_date',
-        'support_date',
-        'survey_date',
-        'email_customer',
-        'observation',
+        'name',
+        'total_rows',
+        'erros_rows',
+        'success_rows',
         'created_by',
         'updated_by'
     ];

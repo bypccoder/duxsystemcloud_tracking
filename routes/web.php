@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/import_salenew/export_errors', [App\Http\Controllers\ImportSaleNewController::class, 'export_errors'])->name('admin.import_salenew.export_errors');
 
+    Route::get('/import_salenew/export_success', [App\Http\Controllers\ImportSaleNewController::class, 'export_success'])->name('admin.import_salenew.export_success');
 
 });
 
