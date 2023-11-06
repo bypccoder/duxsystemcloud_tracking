@@ -13,11 +13,11 @@ class WarehouseStateTypesSeeder extends Seeder
      */
     public function run(): void
     {
-        WarehouseStateTypes::create(['type_equipment_state' => 'ASIGNADO']);
-        WarehouseStateTypes::create(['type_equipment_state' => 'PROGRAMADO']);
-        WarehouseStateTypes::create(['type_equipment_state' => 'NUEVO']);
-        WarehouseStateTypes::create(['type_equipment_state' => 'REFABRIC']);
-        WarehouseStateTypes::create(['type_equipment_state' => 'PENDIENTE']);
-        WarehouseStateTypes::create(['type_equipment_state' => 'DE BAJA']);
+        WarehouseStateTypes::create(['type_equipment_state' => 'ASIGNADO','created_by'=>1,'updated_by'=>1]);
+        WarehouseStateTypes::create(['type_equipment_state' => 'PROGRAMADO','created_by'=>1,'updated_by'=>1]);
+        WarehouseStateTypes::create(['type_equipment_state' => 'NUEVO','created_by'=>1,'updated_by'=>1]);
+        WarehouseStateTypes::create(['type_equipment_state' => 'REFABRIC','created_by'=>1,'updated_by'=>1]);
+        WarehouseStateTypes::create(['type_equipment_state' => 'PENDIENTE','created_by'=>1,'updated_by'=>1]);
+        WarehouseStateTypes::create(['type_equipment_state' => 'DE BAJA','created_by'=>1,'updated_by'=>1]);
     }
 }

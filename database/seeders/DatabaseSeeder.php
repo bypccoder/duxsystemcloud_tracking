@@ -41,5 +41,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SurveyTypesSeeder::class);
 
+        $this->call(WarehouseStateTypesSeeder::class);
+
     }
 }

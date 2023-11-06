@@ -295,10 +295,10 @@
                                                     <select id="type_equipament" name="type_equipament"
                                                         class="select2 form-select" data-allow-clear="true">
                                                         <option value="">Seleccione..</option>
-                                                        @foreach ($management_types as $management_type)
-                                                            <option @if ($management_type->id == $form_postsale->management_type_id) selected @endif
-                                                                value="{{ $management_type->id }}">
-                                                                {{ $management_type->management }}</option>
+                                                        @foreach ($warehouse_state_types as $warehouse_state_type)
+                                                            <option @if ($warehouse_state_type->id == $form_postsale->warehouse_state_type_id) selected @endif
+                                                                value="{{ $warehouse_state_type->id }}">
+                                                                {{ $warehouse_state_type->type_equipment_state }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>

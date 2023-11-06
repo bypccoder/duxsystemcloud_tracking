@@ -8,6 +8,7 @@ use App\Models\PostSaleHistory;
 use App\Models\Result1Back;
 use App\Models\Result2Back;
 use App\Models\TimeRange;
+use App\Models\WarehouseStateTypes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -77,7 +78,7 @@ class TaskController extends Controller
         $management_types = ManagementTypes::all();
         $time_ranges = TimeRange::all();
         $result1s_back = Result1Back::all();
-        //$result2s_back = Result2Back::where('result1_backs_id', '')->get();
+        $warehouse_state_types = WarehouseStateTypes::in('id', [3,4])->get();
 
         $form_postsale->load('history');
 
@@ -115,7 +116,7 @@ class TaskController extends Controller
             return $change;
         });
 
-        return view('admin.tasks.edit', compact('form_postsale', 'management_types', 'time_ranges', 'result1s_back'));
+        return view('admin.tasks.edit', compact('form_postsale', 'management_types', 'time_ranges', 'result1s_back','warehouse_state_types'));
     }
 
     /**

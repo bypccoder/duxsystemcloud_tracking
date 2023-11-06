@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('courier', 250);
             $table->string('guide', 250);
-            $table->string('serial', 250);
             $table->string('master_box', 250);
             $table->string('dispatch_date', 250);
             $table->string('delivery_date', 250);

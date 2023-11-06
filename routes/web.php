@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard/show/{id}', [App\Http\Controllers\DashboardController::class, 'show'])->name('admin.dashboard.show');
 
+    Route::get('/get-dashboard-data', [App\Http\Controllers\DashboardController::class, 'getFormsDashboardData'])->name('admin.get.dashboard.data');
+
     Route::get('/get-tasks-data', [App\Http\Controllers\TaskController::class, 'getTasksData'])->name('admin.get.tasks.data');
 
     Route::get('/tasks/{tipoTab}', [App\Http\Controllers\TaskController::class, 'index'])->name('admin.tasks.index');
