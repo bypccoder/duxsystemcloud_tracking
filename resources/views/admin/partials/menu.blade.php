@@ -19,6 +19,7 @@
             ['route' => 'admin.import_salenew.index', 'text' => 'Importación', 'tipoTab' => '', 'icon' => 'bx bxs-file-import'],
             ['route' => 'admin.form_postsale.index', 'text' => 'Post Venta', 'tipoTab' => '', 'icon' => 'bx bxs-user-detail'],
 
+            // ['route' => 'admin.form_backoffice.index', 'text' => 'Post Venta', 'tipoTab' => '', 'icon' => 'bx bxs-user-detail'],
 
         ];
 

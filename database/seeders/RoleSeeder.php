@@ -37,5 +37,10 @@ class RoleSeeder extends Seeder
         Permission::create(['name'=>'admin.import_salenew.index'])->syncRoles([$role1,$role4]);
         Permission::create(['name'=>'admin.import_salenew.import'])->syncRoles([$role1,$role4]);
 
+        Permission::create(['name'=>'admin.form_backoffice.index'])->syncRoles([$role1,$role2]);
+        Permission::create(['name'=>'admin.form_backoffice.create'])->syncRoles([$role1,$role2]);
+        Permission::create(['name'=>'admin.form_backoffice.edit'])->syncRoles([$role1,$role2]);
+        Permission::create(['name'=>'admin.form_backoffice.destroy'])->syncRoles([$role1,$role2]);
+
     }
 }

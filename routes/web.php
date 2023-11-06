@@ -42,7 +42,13 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/dashboard/show/{id}', [App\Http\Controllers\DashboardController::class, 'show'])->name('admin.dashboard.show');
 
+    Route::get('/get-tasks-data', [App\Http\Controllers\TaskController::class, 'getTasksData'])->name('admin.get.tasks.data');
+
     Route::get('/tasks/{tipoTab}', [App\Http\Controllers\TaskController::class, 'index'])->name('admin.tasks.index');
+
+    Route::get('/tasks/edit/{id}',  [App\Http\Controllers\TaskController::class, 'edit'])->name('admin.tasks.edit');
+
+    Route::put('/tasks/update/{id}',  [App\Http\Controllers\TaskController::class, 'update'])->name('admin.tasks.update');
 
     Route::get('/form_postsale', [App\Http\Controllers\FormPostSaleController::class, 'index'])->name('admin.form_postsale.index');
 
@@ -67,6 +73,25 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/import_salenew/export_errors', [App\Http\Controllers\ImportSaleNewController::class, 'export_errors'])->name('admin.import_salenew.export_errors');
 
     Route::get('/import_salenew/export_success', [App\Http\Controllers\ImportSaleNewController::class, 'export_success'])->name('admin.import_salenew.export_success');
+
+    Route::get('/form_backoffice', [App\Http\Controllers\FormBackofficeController::class, 'index'])->name('admin.form_backoffice.index');
+
+    Route::get('/get-form-backoffice-data', [App\Http\Controllers\FormBackofficeController::class, 'getFormsBackofficeData'])->name('admin.get.form_backoffice.data');
+
+    Route::get('/form_backoffice/show/{id}',  [App\Http\Controllers\FormBackofficeController::class, 'show'])->name('admin.form_backoffice.show');
+
+    Route::get('/form_backoffice/create', [App\Http\Controllers\FormBackofficeController::class, 'create'])->name('admin.form_backoffice.create');
+
+    Route::post('/form_backoffice/store', [App\Http\Controllers\FormBackofficeController::class, 'store'])->name('admin.form_backoffice.store');
+
+    Route::get('/form_backoffice/edit/{id}',  [App\Http\Controllers\FormBackofficeController::class, 'edit'])->name('admin.form_backoffice.edit');
+
+    Route::put('/form_backoffice/update/{id}',  [App\Http\Controllers\FormBackofficeController::class, 'update'])->name('admin.form_backoffice.update');
+
+    /*
+    Gets forms
+    */
+    Route::get('/get-result2', [App\Http\Controllers\TaskController::class, 'getResult2'])->name('admin.tasks.get.result2');
 
 });
 

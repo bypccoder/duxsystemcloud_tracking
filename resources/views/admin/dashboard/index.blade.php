@@ -154,23 +154,21 @@
                                         <thead>
                                             <tr>
                                                 <th></th>
-                                                <th>Tarea</th>
-                                                <th>Fecha Creación</th>
-                                                <th>Motorizado</th>
-                                                <th>Tipo Gestión</th>
-                                                <th>Prioridad</th>
-                                                <th>Acción</th>
+                                                <th>Documento</th>
+                                                <th>Razón Social</th>
+                                                <th>Tipo de Gestión</th>
+                                                <th>Rango Horario</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
                                                 <th></th>
-                                                <th>Tarea</th>
-                                                <th>Fecha Creación</th>
-                                                <th>Motorizado</th>
-                                                <th>Tipo Gestión</th>
-                                                <th>Prioridad</th>
-                                                <th>Acción</th>
+                                                <th>Documento</th>
+                                                <th>Razón Social</th>
+                                                <th>Tipo de Gestión</th>
+                                                <th>Rango Horario</th>
+                                                <th>Action</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -556,237 +554,22 @@
 
     <script>
 
-        // var dt_adv_filter_table = $('#tbl_Nuevos');
-        // var exportColumns = [3, 4]; // Columnas para exportar
-
-        // function customizeExport(inner) {
-        //     if (inner.length <= 0) return inner;
-        //     var el = $.parseHTML(inner);
-        //     var result = '';
-        //     $.each(el, function(index, item) {
-        //         if (item.classList !== undefined && item.classList.contains('user-name')) {
-        //             result = result + item.lastChild.firstChild.textContent;
-        //         } else if (item.innerText === undefined) {
-        //             result = result + item.textContent;
-        //         } else {
-        //             result = result + item.innerText;
-        //         }
-        //     });
-        //     return result;
-        // }
-
-        // var dt_adv_filter = dt_adv_filter_table.DataTable({
-        //     dom: "<'row'<'col-sm-12'tr>><'row'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6 dataTables_pager'p>>",
-        //     ajax: assetsPath + 'json/table-datatable.json',
-
-        //     columns: [{
-        //             data: ''
-        //         },
-        //         {
-        //             data: 'full_name'
-        //         },
-        //         {
-        //             data: 'start_date'
-        //         },
-        //         {
-        //             data: 'post'
-        //         },
-        //         {
-        //             data: 'city'
-        //         },
-        //         {
-        //             data: 'email'
-        //         }
-        //     ],
-        //     columnDefs: [
-
-        //         {
-        //             className: 'control',
-        //             orderable: false,
-        //             targets: 0,
-        //             render: function(data, type, full, meta) {
-        //                 return '';
-        //             }
-        //         },
-        //         {
-        //             width: '20%',
-        //             targets: 2,
-        //         }
-        //     ],
-        //     orderCellsTop: true,
-        //     dom: '<"card-header flex-column flex-md-row"<"head-label text-center"><"dt-action-buttons text-end pt-3 pt-md-0"B>><"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end"f>>t<"row"<"col-sm-12 col-md-6"i><"col-sm-12 col-md-6"p>>',
-        //     displayLength: 10,
-        //     lengthMenu: [10, 25, 50, 75, 100],
-        //     buttons: [{
-        //         extend: 'collection',
-        //         className: 'btn btn-label-primary dropdown-toggle me-2',
-        //         text: '<i class="bx bx-export me-sm-1"></i> <span class="d-none d-sm-inline-block">Export</span>',
-        //         buttons: [{
-        //                 extend: 'print',
-        //                 text: '<i class="bx bx-printer me-1" ></i>Print',
-        //                 className: 'dropdown-item',
-        //                 exportOptions: {
-        //                     columns: [3, 4],
-        //                     // prevent avatar to be display
-        //                     format: {
-        //                         body: function(inner, coldex, rowdex) {
-        //                             if (inner.length <= 0) return inner;
-        //                             var el = $.parseHTML(inner);
-        //                             var result = '';
-        //                             $.each(el, function(index, item) {
-        //                                 if (item.classList !== undefined && item.classList
-        //                                     .contains('user-name')) {
-        //                                     result = result + item.lastChild.firstChild
-        //                                         .textContent;
-        //                                 } else if (item.innerText === undefined) {
-        //                                     result = result + item.textContent;
-        //                                 } else result = result + item.innerText;
-        //                             });
-        //                             return result;
-        //                         }
-        //                     }
-        //                 },
-        //                 customize: function(win) {
-        //                     //customize print view for dark
-        //                     $(win.document.body)
-        //                         .css('color', config.colors.headingColor)
-        //                         .css('border-color', config.colors.borderColor)
-        //                         .css('background-color', config.colors.bodyBg);
-        //                     $(win.document.body)
-        //                         .find('table')
-        //                         .addClass('compact')
-        //                         .css('color', 'inherit')
-        //                         .css('border-color', 'inherit')
-        //                         .css('background-color', 'inherit');
-        //                 }
-        //             },
-        //             {
-        //                 extend: 'csv',
-        //                 text: '<i class="bx bx-file me-1" ></i>Csv',
-        //                 className: 'dropdown-item',
-        //                 exportOptions: {
-        //                     columns: [3, 4],
-        //                     // prevent avatar to be display
-        //                     format: {
-        //                         body: function(inner, coldex, rowdex) {
-        //                             if (inner.length <= 0) return inner;
-        //                             var el = $.parseHTML(inner);
-        //                             var result = '';
-        //                             $.each(el, function(index, item) {
-        //                                 if (item.classList !== undefined && item.classList
-        //                                     .contains('user-name')) {
-        //                                     result = result + item.lastChild.firstChild
-        //                                         .textContent;
-        //                                 } else if (item.innerText === undefined) {
-        //                                     result = result + item.textContent;
-        //                                 } else result = result + item.innerText;
-        //                             });
-        //                             return result;
-        //                         }
-        //                     }
-        //                 }
-        //             },
-        //             {
-        //                 extend: 'excel',
-        //                 text: '<i class="bx bxs-file-export me-1"></i>Excel',
-        //                 className: 'dropdown-item',
-        //                 exportOptions: {
-        //                     columns: [3, 4],
-        //                     // prevent avatar to be display
-        //                     format: {
-        //                         body: function(inner, coldex, rowdex) {
-        //                             if (inner.length <= 0) return inner;
-        //                             var el = $.parseHTML(inner);
-        //                             var result = '';
-        //                             $.each(el, function(index, item) {
-        //                                 if (item.classList !== undefined && item.classList
-        //                                     .contains('user-name')) {
-        //                                     result = result + item.lastChild.firstChild
-        //                                         .textContent;
-        //                                 } else if (item.innerText === undefined) {
-        //                                     result = result + item.textContent;
-        //                                 } else result = result + item.innerText;
-        //                             });
-        //                             return result;
-        //                         }
-        //                     }
-        //                 }
-        //             },
-        //             {
-        //                 extend: 'pdf',
-        //                 text: '<i class="bx bxs-file-pdf me-1"></i>Pdf',
-        //                 className: 'dropdown-item',
-        //                 exportOptions: {
-        //                     columns: [3, 4],
-        //                     // prevent avatar to be display
-        //                     format: {
-        //                         body: function(inner, coldex, rowdex) {
-        //                             if (inner.length <= 0) return inner;
-        //                             var el = $.parseHTML(inner);
-        //                             var result = '';
-        //                             $.each(el, function(index, item) {
-        //                                 if (item.classList !== undefined && item.classList
-        //                                     .contains('user-name')) {
-        //                                     result = result + item.lastChild.firstChild
-        //                                         .textContent;
-        //                                 } else if (item.innerText === undefined) {
-        //                                     result = result + item.textContent;
-        //                                 } else result = result + item.innerText;
-        //                             });
-        //                             return result;
-        //                         }
-        //                     }
-        //                 }
-        //             },
-        //             {
-        //                 extend: 'copy',
-        //                 text: '<i class="bx bx-copy me-1" ></i>Copy',
-        //                 className: 'dropdown-item',
-        //                 exportOptions: {
-        //                     columns: [3, 4],
-        //                     // prevent avatar to be display
-        //                     format: {
-        //                         body: function(inner, coldex, rowdex) {
-        //                             if (inner.length <= 0) return inner;
-        //                             var el = $.parseHTML(inner);
-        //                             var result = '';
-        //                             $.each(el, function(index, item) {
-        //                                 if (item.classList !== undefined && item.classList
-        //                                     .contains('user-name')) {
-        //                                     result = result + item.lastChild.firstChild
-        //                                         .textContent;
-        //                                 } else if (item.innerText === undefined) {
-        //                                     result = result + item.textContent;
-        //                                 } else result = result + item.innerText;
-        //                             });
-        //                             return result;
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         ]
-        //     }]
-        // });
-
         var configParams = {
             columns: [
                 {
                     data: 'id'
                 },
                 {
-                    data: 'name'
+                    data: 'document'
                 },
                 {
-                    data: 'name'
+                    data: 'business_name'
                 },
                 {
-                    data: 'name'
+                    data: 'management'
                 },
                 {
-                    data: 'email'
-                },
-                {
-                    data: 'email'
+                    data: 'description'
                 },
                 {
                     data: ''
@@ -814,7 +597,7 @@
                 }
             ],
             exportColumns: [1, 2,3,4,5,6], // Modificar las columnas para exportar
-            ajaxURL: "{{ route('admin.get.users.data') }}",
+            ajaxURL: "{{ route('admin.get.dashboard.data') }}",
             editRouteParam: "",
             deleteRouteParam: "",
             createRoute: ""

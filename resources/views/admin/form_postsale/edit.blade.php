@@ -341,10 +341,14 @@
                 $(this).val($(this).val().toUpperCase());
             });
 
-
             showManagementTypes();
 
-            $("#management_types").change(function() {
+            var selectManagementTypes = document.getElementById("management_types");
+            selectManagementTypes.addEventListener("change", function() {
+
+                $("#divSale_date input, #divChange_date input, #divPickup_date input, #divSupport_date input, #divSurvey_date input, #divNew_serial input, #divOld_serial input, #divModel_text input, #survey_text input")
+                .val('');
+
                 showManagementTypes();
 
             });

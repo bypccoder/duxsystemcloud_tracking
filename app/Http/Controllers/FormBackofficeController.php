@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ManagementTypes;
 use App\Models\PostSale;
+use App\Models\TimeRange;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class FormBackofficeController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware(['role:Admin|Backoffice', 'permission:admin.dashboard.index']);
+        $this->middleware(['role:Admin|Backoffice', 'permission:admin.form_backoffice.index|admin.form_backoffice.create|admin.form_backoffice.edit|admin.form_backoffice.destroy']);
     }
 
     /**
@@ -18,10 +20,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index');
+        return view('admin.form_backoffice.index');
     }
 
-    public function getFormsDashboardData(Request $request)
+    public function getFormsBackofficeData(Request $request)
     {
 
         $query = PostSale::select('post_sale.*', 'management_types.management', 'time_ranges.description')
@@ -54,21 +56,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -83,7 +70,51 @@ class DashboardController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $form_postsale = PostSale::find($id);
+        if (!$form_postsale) {
+            return abort(404); // Manejo de usuario no encontrado
+        }
+
+        $management_types = ManagementTypes::all();
+        $time_ranges = TimeRange::all();
+
+        $form_postsale->load('history');
+
+        // Modifica la colección de historiales para agregar las descripciones antiguas y nuevas
+        $form_postsale->history->transform(function ($change) {
+
+            $field = $change->field_name;
+            $oldValue = $change->old_value;
+            $newValue = $change->new_value;
+
+            if ($field === 'rango horario') {
+                $oldTimeRange = TimeRange::find($oldValue);
+                $newTimeRange = TimeRange::find($newValue);
+
+                if ($oldTimeRange) {
+                    $change->old_value = $oldTimeRange->description;
+                }
+
+                if ($newTimeRange) {
+                    $change->new_value = $newTimeRange->description;
+                }
+            } else if ($field === 'tipo gestión') {
+                $oldManagementTypes = ManagementTypes::find($oldValue);
+                $newManagementTypes = ManagementTypes::find($newValue);
+
+                if ($oldManagementTypes) {
+                    $change->old_value = $oldManagementTypes->management;
+                }
+
+                if ($newManagementTypes) {
+                    $change->new_value = $newManagementTypes->management;
+                }
+            }
+
+            return $change;
+        });
+
+        return view('admin.form_backoffice.edit', compact('form_postsale', 'management_types', 'time_ranges'));
     }
 
     /**
