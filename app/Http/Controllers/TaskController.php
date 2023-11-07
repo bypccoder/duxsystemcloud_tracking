@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\ManagementTypes;
+use App\Models\Models;
 use App\Models\PostSale;
 use App\Models\PostSaleHistory;
 use App\Models\Result1Back;
 use App\Models\Result2Back;
 use App\Models\TimeRange;
+use App\Models\Warehouse;
 use App\Models\WarehouseStateTypes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,7 +80,9 @@ class TaskController extends Controller
         $management_types = ManagementTypes::all();
         $time_ranges = TimeRange::all();
         $result1s_back = Result1Back::all();
-        $warehouse_state_types = WarehouseStateTypes::in('id', [3,4])->get();
+        $warehouse_state_types = WarehouseStateTypes::whereIn('id', [3, 4])->get();
+        $models = Models::all();
+
 
         $form_postsale->load('history');
 
@@ -116,7 +120,7 @@ class TaskController extends Controller
             return $change;
         });
 
-        return view('admin.tasks.edit', compact('form_postsale', 'management_types', 'time_ranges', 'result1s_back','warehouse_state_types'));
+        return view('admin.tasks.edit', compact('form_postsale', 'management_types', 'time_ranges', 'result1s_back','warehouse_state_types','models'));
     }
 
     /**
@@ -463,4 +467,24 @@ class TaskController extends Controller
 
         return response()->json($result2Options);
     }
+
+    function getEquipment(Request $request)
+    {
+
+        $warehouse_state_type_id = $request->input('warehouse_state_type_id');
+        $models_id = $request->input('models_id');
+
+        $warehouses = Warehouse::where('warehouse_state_type_id', $warehouse_state_type_id)
+        ->where('models_id', $models_id)
+        ->get();
+
+        $warehouseOptions = [];
+
+        foreach ($warehouses as $warehouse) {
+            $warehouseOptions[$warehouse->id] = $warehouse->result;
+        }
+
+        return response()->json($warehouseOptions);
+    }
+
 }

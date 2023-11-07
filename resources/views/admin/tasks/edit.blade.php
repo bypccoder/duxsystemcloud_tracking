@@ -286,13 +286,13 @@
                                         </div>
 
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="type_equipament">Tipo de
+                                            <label class="col-sm-2 col-form-label" for="warehouse_state_type">Tipo de
                                                 Equipo</label>
                                             <div class="col-sm-4">
                                                 <div class="input-group input-group-merge">
                                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                             class="bx bx-table"></i></span>
-                                                    <select id="type_equipament" name="type_equipament"
+                                                    <select id="warehouse_state_type" name="warehouse_state_type"
                                                         class="select2 form-select" data-allow-clear="true">
                                                         <option value="">Seleccione..</option>
                                                         @foreach ($warehouse_state_types as $warehouse_state_type)
@@ -308,26 +308,33 @@
 
                                         <div class="row mb-3">
 
-                                            <label class="col-sm-2 col-form-label" for="document">Modelo</label>
+                                            <label class="col-sm-2 col-form-label" for="models">Modelo</label>
                                             <div class="col-sm-4">
                                                 <div class="input-group input-group-merge">
                                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                             class="bx bxs-id-card"></i></span>
-                                                    <input type="text" id="document" name="document"
-                                                        autocomplete="off" class="form-control" placeholder=""
-                                                        value="{{ old('document') }}">
+                                                    <select id="models" name="models" class="select2 form-select"
+                                                        data-allow-clear="true">
+                                                        <option value="">Seleccione..</option>
+                                                        @foreach ($models as $model)
+                                                            <option @if ($model->id == $form_postsale->model_id) selected @endif
+                                                                value="{{ $model->id }}">
+                                                                {{ $model->model_name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
 
-                                            <label class="col-sm-2 col-form-label" for="business_name">Serie de
+                                            <label class="col-sm-2 col-form-label" for="equipments">Serie de
                                                 Equipo</label>
                                             <div class="col-sm-4">
                                                 <div class="input-group input-group-merge">
                                                     <span id="basic-icon-default-fullname2" class="input-group-text"><i
                                                             class="bx bx-search"></i></span>
-                                                    <input type="text" id="business_name" name="business_name"
-                                                        autocomplete="off" class="form-control uppercase" placeholder=""
-                                                        value="{{ old('business_name') }}">
+                                                    <select id="equipments" name="equipments" class="select2 form-select"
+                                                        data-allow-clear="true">
+                                                        <option value="">Seleccione..</option>
+                                                    </select>
                                                 </div>
                                             </div>
 
@@ -475,7 +482,7 @@
         }
 
         function showResult2() {
-            var result1_id = $("#result1").val();
+            let result1_id = $("#result1").val();
 
             $.ajax({
                 type: 'GET',
@@ -488,9 +495,42 @@
                     result2Select.empty();
 
                     result2Select.append($('<option>', {
-                            value: '',
-                            text: 'Seleccione..'
+                        value: '',
+                        text: 'Seleccione..'
+                    }));
+
+                    $.each(data, function(key, value) {
+                        result2Select.append($('<option>', {
+                            value: key,
+                            text: value
                         }));
+                    });
+                },
+                error: function(data) {
+                    // Manejar errores si es necesario
+                }
+            });
+        }
+
+        function showEquipment() {
+            let warehouse_state_type_id = $("#warehouse_state_type").val();
+            let models_id = $("#models").val();
+
+            $.ajax({
+                type: 'GET',
+                url: '/get-equipment',
+                data: {
+                    warehouse_state_type_id: warehouse_state_type_id,
+                    models_id:models_id
+                },
+                success: function(data) {
+                    var result2Select = $("#equipments");
+                    result2Select.empty();
+
+                    result2Select.append($('<option>', {
+                        value: '',
+                        text: 'Seleccione..'
+                    }));
 
                     $.each(data, function(key, value) {
                         result2Select.append($('<option>', {
@@ -513,6 +553,11 @@
             let selectResult1 = document.getElementById("result1");
             selectResult1.addEventListener("change", function() {
                 showResult2();
+            });
+
+            let selectModels = document.getElementById("models");
+            selectModels.addEventListener("change", function() {
+                showEquipment();
             });
 
             let selectManagementTypes = document.getElementById("management_types");

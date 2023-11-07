@@ -95,6 +95,8 @@ Route::group(['middleware' => ['auth']], function () {
     */
     Route::get('/get-result2', [App\Http\Controllers\TaskController::class, 'getResult2'])->name('admin.tasks.get.result2');
 
+    Route::get('/get-equipment', [App\Http\Controllers\TaskController::class, 'getEquipment'])->name('admin.tasks.get.equipment');
+
 });
 
 
