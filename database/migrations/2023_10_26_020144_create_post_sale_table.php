@@ -55,6 +55,8 @@ return new class extends Migration
             $table->unsignedBigInteger('motorized_id')->nullable();
             $table->foreign('motorized_id')->references('id')->on('users');
             $table->text('observation')->nullable();
+            $table->text('latitude')->nullable();
+            $table->text('longitude')->nullable();
             $table->integer('status_id')->default(1);
             $table->integer('created_by');
             $table->integer('updated_by');

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('post_sale_id');
             $table->foreign('post_sale_id')->references('id')->on('post_sale');
-            $table->string('start', 250);
-            $table->string('arrival', 250);
+            $table->datetime('start');
+            $table->datetime('arrival');
             $table->unsignedBigInteger('motorized_status_id');
             $table->foreign('motorized_status_id')->references('id')->on('motorized_status');
             $table->string('audio', 250);

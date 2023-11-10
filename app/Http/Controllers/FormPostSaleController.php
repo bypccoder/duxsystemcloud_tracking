@@ -279,6 +279,8 @@ class FormPostSaleController extends Controller
             return abort(404);
         }
 
+
+
         $rules = [
             'management_types' => 'required',
             'document' => 'required|numeric|min:8',
@@ -588,7 +590,10 @@ class FormPostSaleController extends Controller
         }
 
         $response = [
-            'redirect' => route('admin.form_postsale.edit', $form_postsale->id),
+            'redirect' => route(
+                'admin.form_postsale.edit',
+                $form_postsale->id
+            ),
             'title' => 'Éxito',
             'message' => 'El formulario post-venta se ha editado con éxito.',
             'type' => 'bg-success'
@@ -605,18 +610,19 @@ class FormPostSaleController extends Controller
         //
     }
 
-    public function news($userid){
+    public function news($userid)
+    {
         // Obtén todos los contrato desde la base de datos
         $postsales = PostSale::select('post_sale.id', 'post_sale.document', 'post_sale.business_name', 'post_sale.time_ranges_id', 'time_ranges.description')
-        ->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id')
-        ->where('motorized_id', $userid)
-        ->orderBy('time_ranges_id', 'asc')
-        ->limit(5)
-        ->get();
-        if($postsales->count() > 0){
+            ->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id')
+            ->where('motorized_id', $userid)
+            ->orderBy('time_ranges_id', 'asc')
+            ->limit(5)
+            ->get();
+        if ($postsales->count() > 0) {
             $success = true;
             $message = 'Tareas listadas';
-        }else{
+        } else {
             $success = false;
             $message = 'No se encontraron tareas';
             $postsales = '';
@@ -624,18 +630,19 @@ class FormPostSaleController extends Controller
         return compact('success', 'message', 'postsales');
     }
 
-    public function olds($userid){
+    public function olds($userid)
+    {
         // Obtén todos los contrato desde la base de datos
         $postsales = PostSale::select('post_sale.id', 'post_sale.document', 'post_sale.business_name', 'post_sale.time_ranges_id')
-        //->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id')
-        ->where('motorized_id', $userid)
-        //->orderBy('time_ranges_id', 'asc')
-        ->limit(5)
-        ->get();
-        if($postsales->count() > 0){
+            //->join('time_ranges', 'time_ranges.id', '=', 'post_sale.time_ranges_id')
+            ->where('motorized_id', $userid)
+            //->orderBy('time_ranges_id', 'asc')
+            ->limit(5)
+            ->get();
+        if ($postsales->count() > 0) {
             $success = true;
             $message = 'Tareas listadas';
-        }else{
+        } else {
             $success = false;
             $message = 'No se encontraron tareas';
             $postsales = '';
@@ -643,12 +650,13 @@ class FormPostSaleController extends Controller
         return compact('success', 'message', 'postsales');
     }
 
-    public function showforapp($idpostsale){
-        $postsale=PostSale::where('id', $idpostsale)->first();
-        if($postsale->count() > 0){
+    public function showforapp($idpostsale)
+    {
+        $postsale = PostSale::where('id', $idpostsale)->first();
+        if ($postsale->count() > 0) {
             $success = true;
             $message = 'Tarea Encontrada';
-        }else{
+        } else {
             $success = false;
             $message = 'Error con la tarea';
             $postsale = '';
@@ -656,17 +664,18 @@ class FormPostSaleController extends Controller
         return compact('success', 'message', 'postsale');
     }
 
-    public function storeapp(Request $request){
+    public function storeapp(Request $request)
+    {
         // Accede a los datos JSON enviados en la solicitud
         $data = $request->json()->all();
         //dd($data);
         // Procesa los datos y realiza la lógica para guardar la tarea en la base de datos
-        $postsale=PostSale::create($data);
+        $postsale = PostSale::create($data);
         // Devuelve una respuesta
-        if($postsale){
+        if ($postsale) {
             $success = true;
             $message = 'Tarea Registrada Correctamente';
-        }else{
+        } else {
             $success = false;
             $message = 'Error con la tarea';
         }

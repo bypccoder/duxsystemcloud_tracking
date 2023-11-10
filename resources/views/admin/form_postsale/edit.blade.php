@@ -83,7 +83,7 @@
                                                 <span class="input-group-text"><i class="bx bx-user"></i></span>
                                                 <input type="text" id="receiving_person" name="receiving_person"
                                                     autocomplete="off" class="form-control uppercase"
-                                                    value="{{  mb_strtoupper($form_postsale->receiving_person) }}" />
+                                                    value="{{ mb_strtoupper($form_postsale->receiving_person) }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
                                                 <span class="input-group-text"><i class="bx bx-envelope"></i></span>
                                                 <input type="text" id="email_customer" name="email_customer"
                                                     autocomplete="off" class="form-control uppercase"
-                                                    value="{{  mb_strtoupper($form_postsale->email_customer) }}" />
+                                                    value="{{ mb_strtoupper($form_postsale->email_customer) }}" />
                                             </div>
                                         </div>
 
@@ -119,7 +119,7 @@
                                         <label class="col-sm-3 col-form-label" for="address">Dirección</label>
                                         <div class="col-sm-9">
                                             <div class="input-group input-group-merge">
-                                                <textarea id="address" name="address" autocomplete="off" class="form-control uppercase">{{  mb_strtoupper($form_postsale->address) }}</textarea>
+                                                <textarea id="address" name="address" autocomplete="off" class="form-control uppercase">{{ mb_strtoupper($form_postsale->address) }}</textarea>
                                             </div>
 
                                         </div>
@@ -130,7 +130,7 @@
                                         <label class="col-sm-3 col-form-label" for="reference">Referencia</label>
                                         <div class="col-sm-9">
                                             <div class="input-group input-group-merge">
-                                                <textarea id="reference" name="reference" autocomplete="off" class="form-control uppercase">{{  mb_strtoupper($form_postsale->reference) }}</textarea>
+                                                <textarea id="reference" name="reference" autocomplete="off" class="form-control uppercase">{{ mb_strtoupper($form_postsale->reference) }}</textarea>
                                             </div>
 
                                         </div>
@@ -208,7 +208,7 @@
                                                 <span class="input-group-text"><i class="bx bxs-book-content"></i></span>
                                                 <input type="text" id="survey_text" name="survey_text"
                                                     autocomplete="off" class="form-control uppercase"
-                                                    value="{{  mb_strtoupper($form_postsale->survey_text) }}" />
+                                                    value="{{ mb_strtoupper($form_postsale->survey_text) }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -240,7 +240,7 @@
                                                 <span class="input-group-text"><i class="bx bx-folder"></i></span>
                                                 <input type="text" id="model_text" name="model_text"
                                                     autocomplete="off" class="form-control uppercase"
-                                                    value="{{  mb_strtoupper($form_postsale->model_text) }}" />
+                                                    value="{{ mb_strtoupper($form_postsale->model_text) }}" />
                                             </div>
                                         </div>
                                     </div>
@@ -274,7 +274,7 @@
                                         <div class="col-sm-9">
                                             <div class="input-group input-group-merge">
 
-                                                <textarea id="observation" name="observation" autocomplete="off" class="form-control uppercase">{{  mb_strtoupper($form_postsale->observation) }}</textarea>
+                                                <textarea id="observation" name="observation" autocomplete="off" class="form-control uppercase">{{ mb_strtoupper($form_postsale->observation) }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -284,8 +284,8 @@
                                             <button type="submit" id="btnRegister" name="btnRegister"
                                                 class="btn btn-sm btn-primary">EDITAR</button>
 
-                                            <a href="{{ route('admin.form_postsale.index') }}" id="btn" name="btn"
-                                                class="btn btn-sm btn-label-secondary btn-sm"><i
+                                            <a href="{{ route('admin.form_postsale.index') }}" id="btn"
+                                                name="btn" class="btn btn-sm btn-label-secondary btn-sm"><i
                                                     class="bx bx-arrow-back"></i>
                                                 &nbsp;
                                                 REGRESAR</a>
@@ -316,11 +316,7 @@
         function showManagementTypes() {
             $(".divChangeLogic").addClass("d-none");
 
-            if (management_types !== ""){
-                $("#divSale_date input, #divChange_date input, #divPickup_date input, #divSupport_date input, #divSurvey_date input, #divNew_serial input, #divOld_serial input, #divModel_text input, #survey_text input").val('');
-            }
-
-            let management_types = $("#management_types").val();
+            var management_types = $("#management_types").val();
 
             if (management_types == 1) {
                 $("#divSale_date, #divNew_serial,#divModel_text").removeClass("d-none");
@@ -337,7 +333,7 @@
 
         $(document).ready(function() {
 
-            $('.uppercase').on('input', function () {
+            $('.uppercase').on('input', function() {
                 $(this).val($(this).val().toUpperCase());
             });
 
@@ -347,7 +343,7 @@
             selectManagementTypes.addEventListener("change", function() {
 
                 $("#divSale_date input, #divChange_date input, #divPickup_date input, #divSupport_date input, #divSurvey_date input, #divNew_serial input, #divOld_serial input, #divModel_text input, #survey_text input")
-                .val('');
+                    .val('');
 
                 showManagementTypes();
 
@@ -362,6 +358,8 @@
                     url: $(this).attr('action'),
                     data: $(this).serialize(),
                     success: function(data) {
+
+
                         ToastManager.createCustomToast({
                             title: data.title,
                             message: data.message,
@@ -374,6 +372,7 @@
 
                     },
                     error: function(data) {
+
                         $('#btnRegister').prop('disabled', false);
                         if (data.status === 422) {
                             // Si hay errores de validación, muestra los mensajes de error en un alert danger

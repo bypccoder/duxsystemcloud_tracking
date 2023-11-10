@@ -9,25 +9,16 @@
     <div class="menu-inner-shadow"></div>
 
     @php
-        $menuData = [
-            ['route' => 'admin.users.index', 'text' => 'Usuarios', 'tipoTab' => '', 'icon' => 'bx bx-bar-chart-alt-2'],
-            ['route' => 'admin.dashboard.index', 'text' => 'Dashboards', 'tipoTab' => '', 'icon' => 'bx bxs-dashboard'],
-            ['route' => 'admin.tasks.index', 'text' => 'Nuevos', 'tipoTab' => 'nuevos', 'icon' => 'bx bx-bar-chart-alt-2'],
-            ['route' => 'admin.tasks.index', 'text' => 'Agendados', 'tipoTab' => 'agendados', 'icon' => 'bx bx-sort-alt-2'],
-            ['route' => 'admin.tasks.index', 'text' => 'Reprogramados', 'tipoTab' => 'reprogramados', 'icon' => 'bx bx-cog'],
-            ['route' => 'admin.tasks.index', 'text' => 'Rechazados', 'tipoTab' => 'rechazados', 'icon' => 'bx bx-shield-x'],
-            ['route' => 'admin.import_salenew.index', 'text' => 'Importación', 'tipoTab' => '', 'icon' => 'bx bxs-file-import'],
-            ['route' => 'admin.form_postsale.index', 'text' => 'Post Venta', 'tipoTab' => '', 'icon' => 'bx bxs-user-detail'],
-
-            // ['route' => 'admin.form_backoffice.index', 'text' => 'Post Venta', 'tipoTab' => '', 'icon' => 'bx bxs-user-detail'],
-
-        ];
+        $menuData = [['route' => 'admin.users.index', 'text' => 'Usuarios', 'tipoTab' => '', 'icon' => 'bx bx-bar-chart-alt-2'], ['route' => 'admin.dashboard.index', 'text' => 'Dashboards', 'tipoTab' => '', 'icon' => 'bx bxs-dashboard'], ['route' => 'admin.tasks.index', 'text' => 'Nuevos', 'tipoTab' => 'nuevos', 'icon' => 'bx bx-bar-chart-alt-2'], ['route' => 'admin.tasks.index', 'text' => 'Agendados', 'tipoTab' => 'agendados', 'icon' => 'bx bx-sort-alt-2'], ['route' => 'admin.tasks.index', 'text' => 'Reprogramados', 'tipoTab' => 'reprogramados', 'icon' => 'bx bx-cog'], ['route' => 'admin.tasks.index', 'text' => 'Rechazados', 'tipoTab' => 'rechazados', 'icon' => 'bx bx-shield-x'], ['route' => 'admin.import_salenew.index', 'text' => 'Importación', 'tipoTab' => '', 'icon' => 'bx bxs-file-import'], ['route' => 'admin.form_postsale.index', 'text' => 'Post Venta', 'tipoTab' => '', 'icon' => 'bx bxs-user-detail']];
 
         $menuItems = [];
 
+        $currentRoute = request()
+            ->route()
+            ->getName();
+
         foreach ($menuData as $item) {
             $isActive = request()->routeIs($item['route']) && (isset($item['tipoTab']) ? request('tipoTab') == $item['tipoTab'] : true);
-
             $menuItems[] = [
                 'route' => $item['route'],
                 'text' => $item['text'],
@@ -41,17 +32,16 @@
     <ul class="menu-inner py-1">
         @foreach ($menuItems as $menuItem)
             @can($menuItem['route'])
-            <li class="menu-item {{ $menuItem['isActive'] ? 'active open' : '' }}">
-                <a href="{{ isset($menuItem['tipoTab']) && $menuItem['tipoTab'] !== '' ? route($menuItem['route'], ['tipoTab' => $menuItem['tipoTab']]) : route($menuItem['route']) }}"
-                    class="menu-link text-center">
-                    <div class="menu-icon-large">
-                        <i class="menu-icon tf-icons {{ $menuItem['icon'] }} fa-2x"></i>
-                    </div>
-                    <div class="text-truncate" data-i18n="{{ $menuItem['text'] }}">{{ $menuItem['text'] }}</div>
-                </a>
-            </li>
+                <li class="menu-item {{ $menuItem['isActive'] ? 'active open' : '' }}">
+                    <a href="{{ isset($menuItem['tipoTab']) && $menuItem['tipoTab'] !== '' ? route($menuItem['route'], ['tipoTab' => $menuItem['tipoTab']]) : route($menuItem['route']) }}"
+                        class="menu-link text-center">
+                        <div class="menu-icon-large">
+                            <i class="menu-icon tf-icons {{ $menuItem['icon'] }} fa-2x"></i>
+                        </div>
+                        <div class="text-truncate" data-i18n="{{ $menuItem['text'] }}">{{ $menuItem['text'] }}</div>
+                    </a>
+                </li>
             @endcan
-
         @endforeach
     </ul>
 
