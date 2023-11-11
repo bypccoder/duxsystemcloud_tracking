@@ -686,15 +686,10 @@ class FormPostSaleController extends Controller
     }
 
     public function newTask(Request $request){
-        //dd($request->post());
         $data = $request->all();
-        //dd($data);
-        //$result['data'] = new Task();
-        //$result['status'] = 0;
         $current_date = Carbon::now()->format('Ymd');
         $path = $data['post_sale_id'] . '/fotos/' . $current_date;
         $file = UploadFile::Setfile($data["files"], $path);
-        //$data = json_decode($request->data);
         try {
             $task = Task::create([
                 'post_sale_id' => $data["post_sale_id"],
@@ -712,8 +707,6 @@ class FormPostSaleController extends Controller
         } catch (\Throwable $th) {
             UploadFile::deleteFile($file);
             $success = false;
-            //$message = 'Ha ocurrido un error al registrar la tarea  :' . $th->getMessage();
-            //$message = 'Ha ocurrido un error al registrar la tarea y sus datos';
         }
 
         return compact('success', 'message');
