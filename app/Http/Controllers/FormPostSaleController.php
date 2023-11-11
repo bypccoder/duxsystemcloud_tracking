@@ -6,6 +6,8 @@ use App\Models\ManagementTypes;
 use App\Models\PostSale;
 use App\Models\PostSaleHistory;
 use App\Models\TimeRange;
+use App\Models\UploadFile;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -625,7 +627,7 @@ class FormPostSaleController extends Controller
         } else {
             $success = false;
             $message = 'No se encontraron tareas';
-            $postsales = '';
+            $postsales = [];
         }
         return compact('success', 'message', 'postsales');
     }
@@ -680,5 +682,11 @@ class FormPostSaleController extends Controller
             $message = 'Error con la tarea';
         }
         return compact('success', 'message');
+    }
+
+    public function newTask(Request $request){
+        //dd($request->post());
+        $data = $request->post();
+
     }
 }
