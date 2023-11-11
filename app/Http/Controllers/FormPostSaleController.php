@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ManagementTypes;
 use App\Models\PostSale;
 use App\Models\PostSaleHistory;
+use App\Models\Task;
 use App\Models\TimeRange;
 use App\Models\UploadFile;
 use Carbon\Carbon;
@@ -627,7 +628,7 @@ class FormPostSaleController extends Controller
         } else {
             $success = false;
             $message = 'No se encontraron tareas';
-            $postsales = [];
+            $postsales = '';
         }
         return compact('success', 'message', 'postsales');
     }
@@ -661,7 +662,7 @@ class FormPostSaleController extends Controller
         } else {
             $success = false;
             $message = 'Error con la tarea';
-            $postsale = '';
+            $postsale = [];
         }
         return compact('success', 'message', 'postsale');
     }
@@ -686,7 +687,35 @@ class FormPostSaleController extends Controller
 
     public function newTask(Request $request){
         //dd($request->post());
-        $data = $request->post();
+        $data = $request->all();
+        //dd($data);
+        //$result['data'] = new Task();
+        //$result['status'] = 0;
+        $current_date = Carbon::now()->format('Ymd');
+        $path = $data['post_sale_id'] . '/fotos/' . $current_date;
+        $file = UploadFile::Setfile($data["files"], $path);
+        //$data = json_decode($request->data);
+        try {
+            $task = Task::create([
+                'post_sale_id' => $data["post_sale_id"],
+                'start' => $data["start"],
+                'arrival' => $data["arrival"],
+                'motorized_status_id' => $data["motorized_status_id"],
+                'files' => $file,
+                'token' => $data["token"],
+                'observation' => $data["observation"],
+                'created_by' => $data["created_by"]
+            ]);
+            $success = true;
+            $message = 'Tarea Registrada Correctamente';
+            //$result['data'] = $task;
+        } catch (\Throwable $th) {
+            UploadFile::deleteFile($file);
+            $success = false;
+            //$message = 'Ha ocurrido un error al registrar la tarea  :' . $th->getMessage();
+            //$message = 'Ha ocurrido un error al registrar la tarea y sus datos';
+        }
 
+        return compact('success', 'message');
     }
 }
