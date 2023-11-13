@@ -687,9 +687,12 @@ class FormPostSaleController extends Controller
 
     public function newTask(Request $request){
         $data = $request->all();
+        //dd($request->all());
         $current_date = Carbon::now()->format('Ymd');
         $path = $data['post_sale_id'] . '/fotos/' . $current_date;
         $file = UploadFile::Setfile($data["files"], $path);
+        $pathaudio = $data['post_sale_id'] . '/audios/' . $current_date;
+        $fileaudio = UploadFile::Setfile($data["audio"], $pathaudio);
         try {
             $task = Task::create([
                 'post_sale_id' => $data["post_sale_id"],
@@ -697,6 +700,7 @@ class FormPostSaleController extends Controller
                 'arrival' => $data["arrival"],
                 'motorized_status_id' => $data["motorized_status_id"],
                 'files' => $file,
+                'audio' => $fileaudio,
                 'token' => $data["token"],
                 'observation' => $data["observation"],
                 'created_by' => $data["created_by"]
@@ -710,5 +714,11 @@ class FormPostSaleController extends Controller
         }
 
         return compact('success', 'message');
+        /*if ($request->hasFile('audio')) {
+            $audio = $request->file('audio');
+            dd($request, '1');
+        }else{
+            dd($request, '2');
+        }*/
     }
 }
