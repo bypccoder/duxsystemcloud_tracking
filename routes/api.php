@@ -24,3 +24,8 @@ Route::prefix('postventa')->middleware('auth:api')->group(function () {
 Route::prefix('task')->middleware('auth:api')->group(function () {
     Route::post('saved/', [FormPostSaleController::class, 'newTask']); // Modificar una tarea (falta crear su api)
 });
+
+Route::get('unauthorized',function(Request $r){
+    return response()->json(['success' => false, "message"=>"No autorizado, No se proporcionó Token o es invalido"]);
+   })->name('api.unauthorized');
+

@@ -687,7 +687,7 @@ class FormPostSaleController extends Controller
 
     public function newTask(Request $request){
         $data = $request->all();
-        //dd($request->all());
+        dd($request->all());
         $current_date = Carbon::now()->format('Ymd');
         $path = $data['post_sale_id'] . '/fotos/' . $current_date;
         $file = UploadFile::Setfile($data["files"], $path);
@@ -714,11 +714,5 @@ class FormPostSaleController extends Controller
         }
 
         return compact('success', 'message');
-        /*if ($request->hasFile('audio')) {
-            $audio = $request->file('audio');
-            dd($request, '1');
-        }else{
-            dd($request, '2');
-        }*/
     }
 }
