@@ -26,6 +26,6 @@ Route::prefix('task')->middleware('auth:api')->group(function () {
 });
 
 Route::get('unauthorized',function(Request $r){
-    return response()->json(['success' => false, "message"=>"No autorizado, No se proporcionó Token o es invalido"]);
-   })->name('api.unauthorized');
+    return response()->json(['success' => false, 'state' => 3, "message"=>"No se proporcionó Token o es invalido"]);
+})->name('api.unauthorized');
 
