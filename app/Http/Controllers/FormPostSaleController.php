@@ -686,24 +686,37 @@ class FormPostSaleController extends Controller
     }
 
     public function newTask(Request $request){
-        $data = $request->all();
-        dd($request->all());
+        //dd($request->file);
+        $data = json_decode($request->data);
+        $postsale = PostSale::where('id', $data->post_sale_id)->first();
+        if($postsale){
+            if($postsale->token != $data->token){
+                $success = false;
+                $message = "El token no es correcto";
+                return compact('success', 'message');
+            }
+        }
+        if(empty($postsale)){
+            $success = false;
+            $message = "El id postventa no existe";
+            return compact('success', 'message');
+        }
         $current_date = Carbon::now()->format('Ymd');
-        $path = $data['post_sale_id'] . '/fotos/' . $current_date;
-        $file = UploadFile::Setfile($data["files"], $path);
-        $pathaudio = $data['post_sale_id'] . '/audios/' . $current_date;
-        $fileaudio = UploadFile::Setfile($data["audio"], $pathaudio);
+        $path = $data->post_sale_id . '/fotos/' . $current_date;
+        $file = UploadFile::Setfile($request->file, $path);
+        $pathaudio = $data->post_sale_id . '/audios/' . $current_date;
+        $fileaudio = UploadFile::Setfile($request->audio, $pathaudio);
         try {
             $task = Task::create([
-                'post_sale_id' => $data["post_sale_id"],
-                'start' => $data["start"],
-                'arrival' => $data["arrival"],
-                'motorized_status_id' => $data["motorized_status_id"],
+                'post_sale_id' => $data->post_sale_id,
+                'start' => $data->start,
+                'arrival' => $data->arrival,
+                'motorized_status_id' => $data->motorized_status_id,
                 'files' => $file,
                 'audio' => $fileaudio,
-                'token' => $data["token"],
-                'observation' => $data["observation"],
-                'created_by' => $data["created_by"]
+                'token' => $data->token,
+                'observation' => $data->observation,
+                'created_by' => $data->created_by
             ]);
             $success = true;
             $message = 'Tarea Registrada Correctamente';
