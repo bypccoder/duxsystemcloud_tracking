@@ -28,4 +28,19 @@ class UploadFile extends Model
     {
         Storage::disk('public')->delete("$file");
     }
+
+    public static function Setfileimg($file, $ruta, $antiguo = false)
+    {
+
+        $imageName = 'test1';
+        $ex = '.jpg';
+        /* dd( $ex); */
+        $n = Str::slug($imageName) . '.' . $ex;
+        if ($antiguo) {
+            Storage::disk('public')->delete("$antiguo");
+        }
+
+        Storage::disk('public')->put($ruta . "/" . $n, \File::get($file));
+        return $ruta . '/' . $n;
+    }
 }
