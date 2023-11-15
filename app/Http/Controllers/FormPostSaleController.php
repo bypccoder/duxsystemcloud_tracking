@@ -724,6 +724,7 @@ class FormPostSaleController extends Controller
         } catch (\Throwable $th) {
             UploadFile::deleteFile($file);
             $success = false;
+            $message = "Error: " . $th->getMessage();
         }
 
         return compact('success', 'message');
