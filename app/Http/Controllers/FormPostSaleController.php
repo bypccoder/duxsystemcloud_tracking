@@ -703,11 +703,11 @@ class FormPostSaleController extends Controller
         }
         $current_date = Carbon::now()->format('Ymd');
         $path = $data->post_sale_id . '/fotos/' . $current_date;
-        $file = UploadFile::Setfile($request->file, $path);
-        //$file = '';
+        //$file = UploadFile::Setfile($request->file, $path);
+        $file = '';
         $pathaudio = $data->post_sale_id . '/audios/' . $current_date;
-        //$fileaudio = UploadFile::Setfile($request->audio, $pathaudio);
-        $fileaudio = '';
+        $fileaudio = UploadFile::Setfile($request->audio, $pathaudio);
+        //$fileaudio = '';
         try {
             $task = Task::create([
                 'post_sale_id' => $data->post_sale_id,
