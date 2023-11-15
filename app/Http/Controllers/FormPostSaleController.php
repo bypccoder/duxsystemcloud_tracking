@@ -703,7 +703,7 @@ class FormPostSaleController extends Controller
         }
         $current_date = Carbon::now()->format('Ymd');
         $path = $data->post_sale_id . '/fotos/' . $current_date;
-        $file = UploadFile::Setfileimg($request->image, $path);
+        $file = UploadFile::Setfile($request->image, $path);
         //$file = '';
         $pathaudio = $data->post_sale_id . '/audios/' . $current_date;
         $fileaudio = UploadFile::Setfile($request->audio, $pathaudio);
