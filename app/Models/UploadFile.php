@@ -33,7 +33,7 @@ class UploadFile extends Model
     {
 
         $imageName = 'test1';
-        $ex = '.jpg';
+        $ex = 'jpg';
         /* dd( $ex); */
         $n = Str::slug($imageName) . '.' . $ex;
         if ($antiguo) {
