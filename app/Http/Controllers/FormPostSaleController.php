@@ -748,10 +748,13 @@ class FormPostSaleController extends Controller
     public function alterstatus(Request $request)
     {
         //dd($request->data, json_decode($request->data));
-        $data = json_decode($request->data);
+        //$data = json_decode($request->data);
         //dd($data);
-        $id = $data->post_sale_id;
-        $id_status = $data->post_sale_status_id;
+        //$id = $data->post_sale_id;
+        //$id_status = $data->post_sale_status_id;
+        $id = $request->only('id');
+        $id_status = $request->only('status');
+        dd($id, $id_status);
         // Recibir el ID y realizar la lógica para cambiar el estado
         try {
             // Encuentra el modelo por el ID
