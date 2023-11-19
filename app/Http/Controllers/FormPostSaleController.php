@@ -750,8 +750,8 @@ class FormPostSaleController extends Controller
         //dd($request->data, json_decode($request->data));
         $data = json_decode($request->data);
         //dd($data);
-        $id = $data->post_sale_id;
-        $id_status = $data->post_sale_status_id;
+        $id = $data->id;
+        $id_status = $data->status;
         //$id = $request->only('id');
         //$id_status = $request->only('status');
         //dd($id, $id_status);
