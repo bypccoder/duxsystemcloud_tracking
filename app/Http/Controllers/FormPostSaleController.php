@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailEnvioToken;
 use App\Models\ManagementTypes;
 use App\Models\PostSale;
 use App\Models\PostSaleHistory;
@@ -11,6 +12,7 @@ use App\Models\UploadFile;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class FormPostSaleController extends Controller
 {
@@ -686,7 +688,8 @@ class FormPostSaleController extends Controller
     }
 
     public function newTask(Request $request){
-        //dd($request->file);
+        dd($request->file->extension());
+
         $data = json_decode($request->data);
         $postsale = PostSale::where('id', $data->post_sale_id)->first();
         /*if($postsale){
@@ -708,23 +711,79 @@ class FormPostSaleController extends Controller
         $pathaudio = $data->post_sale_id . '/audios/' . $current_date;
         $fileaudio = UploadFile::Setfile($request->audio, $pathaudio);
         //$fileaudio = '';
-        try {
-            $task = Task::create([
-                'post_sale_id' => $data->post_sale_id,
-                'start' => $data->start,
-                'arrival' => $data->arrival,
-                'motorized_status_id' => $data->motorized_status_id,
-                'files' => $file,
-                'audio' => $fileaudio,
-                'token' => $data->token,
-                'observation' => $data->observation,
-                'created_by' => $data->created_by
-            ]);
-            $success = true;
-            $message = 'Tarea Registrada Correctamente';
+        $task = Task::create([
+            'post_sale_id' => $data->post_sale_id,
+            'start' => $data->start,
+            'arrival' => $data->arrival,
+            'motorized_status_id' => $data->motorized_status_id,
+            'files' => $file,
+            'audio' => $fileaudio,
+            'token' => $data->token,
+            'observation' => $data->observation,
+            'created_by' => $data->created_by
+        ]);
+        if($task){
+            $id =  $data->post_sale_id;
+            $postsaleu = PostSale::findOrFail($id);
+            $postsaleu->post_sale_status_id=5;
+            $postsaleu->updated_by=auth()->user()->id;
+            $postsaleu->update();
+            if($postsaleu){
+                $success = true;
+                $message = 'Tarea Registrada Correctamente';
+            }else{
+                $success = false;
+                $message = 'Error al finalizar el estado de la Tarea';
+            }
             //$result['data'] = $task;
-        } catch (\Throwable $th) {
+        } else {
             //UploadFile::deleteFile($file);
+            $success = false;
+            $message = "Error al registrar los resultados";
+        }
+
+        return compact('success', 'message');
+    }
+
+    public function alterstatus(Request $request)
+    {
+        //dd($request->data, json_decode($request->data));
+        $data = json_decode($request->data);
+        //dd($data);
+        $id = $data->post_sale_id;
+        $id_status = $data->post_sale_status_id;
+        // Recibir el ID y realizar la lógica para cambiar el estado
+        try {
+            // Encuentra el modelo por el ID
+            $postsale = PostSale::findOrFail($id);
+            $postsale->post_sale_status_id=$id_status;
+            $postsale->updated_by=auth()->user()->id;
+            $postsale->update();
+
+            if($postsale){
+                $success = true;
+                $message = 'Estado modificado correctamente';
+            }
+        } catch (\Throwable $th) {
+            // Manejar cualquier error que pueda ocurrir
+            $success = false;
+            $message = "Error: " . $th->getMessage();
+        }
+
+        return compact('success', 'message');
+    }
+
+    public function sendtokenemail($post_sale_id){
+        //dd($post_sale_id);
+        $postsale = PostSale::findOrFail($post_sale_id);
+        $array = $postsale->toArray();
+        //dd($array);
+        try{
+            Mail::to(trim($postsale->email_customer))->send(new MailEnvioToken($array));
+            $success = true;
+            $message = 'Correo Enviado!';
+        } catch (\Throwable $th) {
+            // Manejar cualquier error que pueda ocurrir
             $success = false;
             $message = "Error: " . $th->getMessage();
         }
