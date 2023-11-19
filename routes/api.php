@@ -18,7 +18,7 @@ Route::prefix('postventa')->middleware('auth:api')->group(function () {
     Route::get('olds/{userid}', [FormPostSaleController::class, 'olds']); // Lista de tareas antiguas
     Route::get('/{id}', [FormPostSaleController::class, 'showforapp']); // Ver una tarea
     Route::post('/', [FormPostSaleController::class, 'storeapp']); // Registrar una tarea
-    Route::post('alterstatus/', [FormPostSaleController::class, 'alterstatus']); // Modificar una tarea (falta crear su api)
+    Route::get('alterstatus/', [FormPostSaleController::class, 'alterstatus']); // Modificar una tarea (falta crear su api)
     Route::get('sendtokenemail/{id}', [FormPostSaleController::class, 'sendtokenemail']); // Modificar una tarea (falta crear su api)
 });
 
