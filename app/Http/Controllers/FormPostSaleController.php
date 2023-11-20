@@ -748,10 +748,11 @@ class FormPostSaleController extends Controller
     public function alterstatus(Request $request)
     {
         //dd($request->data, json_decode($request->data));
-        $data = json_decode($request->data);
+        //$data = json_decode($request->data);
+        $data = $request->json()->all();
         //dd($data);
-        $id = $data->id;
-        $id_status = $data->status;
+        $id = $data['id'];
+        $id_status = $data['status'];
         //$id = $request->only('id');
         //$id_status = $request->only('status');
         //dd($id, $id_status);
