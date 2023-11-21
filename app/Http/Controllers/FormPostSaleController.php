@@ -688,7 +688,7 @@ class FormPostSaleController extends Controller
     }
 
     public function newTask(Request $request){
-        dd($request->file->extension());
+        //dd($request->image->extension(), $request->image->getClientOriginalName(),$request->image, $request->audio);
 
         $data = json_decode($request->data);
         $postsale = PostSale::where('id', $data->post_sale_id)->first();
