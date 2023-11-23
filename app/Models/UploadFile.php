@@ -29,7 +29,7 @@ class UploadFile extends Model
         Storage::disk('public')->delete("$file");
     }
 
-    public static function Setfileimg($file, $ruta, $antiguo = false)
+    public static function Setfilesinex($file, $ruta, $antiguo = false)
     {
         $imageName = $file->getClientOriginalName();
         //$ex = $file->extension();

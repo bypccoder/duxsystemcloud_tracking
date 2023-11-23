@@ -709,7 +709,7 @@ class FormPostSaleController extends Controller
         $file = UploadFile::Setfile($request->file, $path);
         //$file = '';
             $pathaudio = $data->post_sale_id . '/audios/' . $current_date;
-        $fileaudio = UploadFile::Setfilesinex($request->audio, $pathaudio);
+        $fileaudio = UploadFile::Setfile($request->audio, $pathaudio);
         //$fileaudio = '';
             $task = Task::create([
                 'post_sale_id' => $data->post_sale_id,
