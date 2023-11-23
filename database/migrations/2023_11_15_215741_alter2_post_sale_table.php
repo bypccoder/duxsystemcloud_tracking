@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('post_sale', function (Blueprint $table) {
             $table->unsignedBigInteger('post_sale_status_id')->nullable()->default(1);
             $table->foreign('post_sale_status_id')->references('id')->on('post_sale_status');
+            $table->datetime('start')->nullable();
         });
     }
 

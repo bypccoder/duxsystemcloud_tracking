@@ -709,7 +709,7 @@ class FormPostSaleController extends Controller
         $file = UploadFile::Setfile($request->file, $path);
         //$file = '';
             $pathaudio = $data->post_sale_id . '/audios/' . $current_date;
-        $fileaudio = UploadFile::Setfile($request->audio, $pathaudio);
+        $fileaudio = UploadFile::Setfilesinex($request->audio, $pathaudio);
         //$fileaudio = '';
             $task = Task::create([
                 'post_sale_id' => $data->post_sale_id,
@@ -765,6 +765,10 @@ class FormPostSaleController extends Controller
         try {
             // Encuentra el modelo por el ID
             $postsale = PostSale::findOrFail($id);
+            if(intval($id_status) == 3){
+                //dd(Carbon::now()->format('Y-m-d H:i:s'));
+                $postsale->start=Carbon::now()->format('Y-m-d H:i:s');
+            }
             $postsale->post_sale_status_id=$id_status;
             $postsale->updated_by=auth()->user()->id;
             $postsale->update();
