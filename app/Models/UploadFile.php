@@ -13,15 +13,16 @@ class UploadFile extends Model
     {
 
         $imageName = $file->getClientOriginalName();
-        $ex = $file->extension();
+        //$ex = $file->extension();
         /* dd( $ex); */
-        $n = Str::slug($imageName) . '.' . $ex;
+        //$n = Str::slug($imageName) . '.' . $ex;
         if ($antiguo) {
             Storage::disk('public')->delete("$antiguo");
         }
 
-        Storage::disk('public')->put($ruta . "/" . $n, \File::get($file));
-        return $ruta . '/' . $n;
+        //Storage::disk('public')->put($ruta . "/" . $n, \File::get($file));
+        Storage::disk('public')->put($ruta . "/" . $imageName, \File::get($file));
+        return $ruta . '/' . $imageName;
     }
 
     public static function deleteFile($file)
