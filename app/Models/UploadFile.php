@@ -13,6 +13,25 @@ class UploadFile extends Model
     {
 
         $imageName = $file->getClientOriginalName();
+        $ex = $file->extension();
+        /* dd( $ex); */
+        $n = Str::slug($imageName) . '.' . $ex;
+        if ($antiguo) {
+            Storage::disk('public')->delete("$antiguo");
+        }
+
+        Storage::disk('public')->put($ruta . "/" . $n, \File::get($file));
+        return $ruta . '/' . $n;
+    }
+
+    public static function deleteFile($file)
+    {
+        Storage::disk('public')->delete("$file");
+    }
+
+    public static function Setfileimg($file, $ruta, $antiguo = false)
+    {
+        $imageName = $file->getClientOriginalName();
         //$ex = $file->extension();
         /* dd( $ex); */
         //$n = Str::slug($imageName) . '.' . $ex;
@@ -23,25 +42,5 @@ class UploadFile extends Model
         //Storage::disk('public')->put($ruta . "/" . $n, \File::get($file));
         Storage::disk('public')->put($ruta . "/" . $imageName, \File::get($file));
         return $ruta . '/' . $imageName;
-    }
-
-    public static function deleteFile($file)
-    {
-        Storage::disk('public')->delete("$file");
-    }
-
-    public static function Setfileimg($file, $ruta, $antiguo = false)
-    {
-
-        $imageName = 'test1';
-        $ex = 'jpg';
-        /* dd( $ex); */
-        $n = Str::slug($imageName) . '.' . $ex;
-        if ($antiguo) {
-            Storage::disk('public')->delete("$antiguo");
-        }
-
-        Storage::disk('public')->put($ruta . "/" . $n, \File::get($file));
-        return $ruta . '/' . $n;
     }
 }
