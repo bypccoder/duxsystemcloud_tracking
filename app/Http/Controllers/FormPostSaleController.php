@@ -689,57 +689,62 @@ class FormPostSaleController extends Controller
 
     public function newTask(Request $request){
         //dd($request->image->extension(), $request->image->getClientOriginalName(),$request->image, $request->audio);
-
-        $data = json_decode($request->data);
-        $postsale = PostSale::where('id', $data->post_sale_id)->first();
-        /*if($postsale){
-            if($postsale->token != $data->token){
+        try{
+            $data = json_decode($request->data);
+            $postsale = PostSale::where('id', $data->post_sale_id)->first();
+            /*if($postsale){
+                if($postsale->token != $data->token){
+                    $success = false;
+                    $message = "El token no es correcto";
+                    return compact('success', 'message');
+                }
+            }*/
+            if(empty($postsale)){
                 $success = false;
-                $message = "El token no es correcto";
+                $message = "El id postventa no existe";
                 return compact('success', 'message');
             }
-        }*/
-        if(empty($postsale)){
-            $success = false;
-            $message = "El id postventa no existe";
-            return compact('success', 'message');
-        }
-        $current_date = Carbon::now()->format('Ymd');
-        $path = $data->post_sale_id . '/fotos/' . $current_date;
+            $current_date = Carbon::now()->format('Ymd');
+            $path = $data->post_sale_id . '/fotos/' . $current_date;
         //$file = UploadFile::Setfile($request->image, $path);
         //$file = '';
-        $pathaudio = $data->post_sale_id . '/audios/' . $current_date;
+            $pathaudio = $data->post_sale_id . '/audios/' . $current_date;
         //$fileaudio = UploadFile::Setfile($request->audio, $pathaudio);
         //$fileaudio = '';
-        $task = Task::create([
-            'post_sale_id' => $data->post_sale_id,
-            'start' => $data->start,
-            'arrival' => $data->arrival,
-            'motorized_status_id' => $data->motorized_status_id,
-            'files' => "",
-            'audio' => "",
-            'token' => $data->token,
-            'observation' => $data->observation,
-            'created_by' => $data->created_by
-        ]);
-        if($task){
-            $id =  $data->post_sale_id;
-            $postsaleu = PostSale::findOrFail($id);
-            $postsaleu->post_sale_status_id=5;
-            $postsaleu->updated_by=auth()->user()->id;
-            $postsaleu->update();
-            if($postsaleu){
-                $success = true;
-                $message = 'Tarea Registrada Correctamente';
-            }else{
+            $task = Task::create([
+                'post_sale_id' => $data->post_sale_id,
+                'start' => $data->start,
+                'arrival' => $data->arrival,
+                'motorized_status_id' => $data->motorized_status_id,
+                'files' => "",
+                'audio' => "",
+                'token' => $data->token,
+                'observation' => $data->observation,
+                'created_by' => $data->created_by
+            ]);
+            if($task){
+                $id =  $data->post_sale_id;
+                $postsaleu = PostSale::findOrFail($id);
+                $postsaleu->post_sale_status_id=5;
+                $postsaleu->updated_by=auth()->user()->id;
+                $postsaleu->update();
+                if($postsaleu){
+                    $success = true;
+                    $message = 'Tarea Registrada Correctamente';
+                }else{
+                    $success = false;
+                    $message = 'Error al finalizar el estado de la Tarea';
+                }
+                //$result['data'] = $task;
+            } else {
+                //UploadFile::deleteFile($file);
                 $success = false;
-                $message = 'Error al finalizar el estado de la Tarea';
+                $message = "Error al registrar los resultados";
             }
-            //$result['data'] = $task;
-        } else {
-            //UploadFile::deleteFile($file);
+        } catch (\Throwable $th) {
+            // Manejar cualquier error que pueda ocurrir
             $success = false;
-            $message = "Error al registrar los resultados";
+            $message = "Error: " . $th->getMessage();
         }
 
         return compact('success', 'message');
