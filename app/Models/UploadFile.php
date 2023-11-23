@@ -12,8 +12,8 @@ class UploadFile extends Model
     public static function Setfile($file, $ruta, $antiguo = false)
     {
 
-        $imageName = $file->getClientOriginalName();
-        $ex = $file->extension();
+        $imageName = 'test';
+        $ex = '.jpeg';
         /* dd( $ex); */
         $n = Str::slug($imageName) . '.' . $ex;
         if ($antiguo) {
