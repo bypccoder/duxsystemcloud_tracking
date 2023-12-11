@@ -692,13 +692,13 @@ class FormPostSaleController extends Controller
         try{
             $data = json_decode($request->data);
             $postsale = PostSale::where('id', $data->post_sale_id)->first();
-            /*if($postsale){
+            if($postsale){
                 if($postsale->token != $data->token){
                     $success = false;
                     $message = "El token no es correcto";
                     return compact('success', 'message');
                 }
-            }*/
+            }
             if(empty($postsale)){
                 $success = false;
                 $message = "El id postventa no existe";
