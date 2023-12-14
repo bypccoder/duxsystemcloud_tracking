@@ -792,9 +792,17 @@ class FormPostSaleController extends Controller
         $array = $postsale->toArray();
         //dd($array);
         try{
-            Mail::to(trim($postsale->email_customer))->send(new MailEnvioToken($array));
-            $success = true;
-            $message = 'Correo Enviado!';
+            if(Mail::to(trim($postsale->email_customer))->send(new MailEnvioToken($array))){
+                $success = true;
+                $postsale->post_sale_status_id=4;
+                $postsale->updated_by=auth()->user()->id;
+                $postsale->update();
+                if($postsale){
+                    $message = 'Correo Enviado y Estado modificado!';
+                }else{
+                    $message = 'Solo el Correo se ha Enviado!';
+                }
+            };
         } catch (\Throwable $th) {
             // Manejar cualquier error que pueda ocurrir
             $success = false;
