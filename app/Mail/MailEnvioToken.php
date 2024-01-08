@@ -27,7 +27,7 @@ class MailEnvioToken extends Mailable
     {
         //dd($this->datos);
         return $this->markdown('email.enviotoken')
-        ->subject('ENVIO DE CODIGO PARA RECIBO PRODUCTO')
+        ->subject('ENVIO DE TOKEN PARA RECIBO PRODUCTO')
         ->with('datos', $this->datos);
 
     }

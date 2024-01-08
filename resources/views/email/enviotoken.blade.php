@@ -31,13 +31,13 @@
                 <tr>
 
                   <td style="padding:0 0 36px 0;color:#04215A;">
-                    <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">ENVIO CODIGO</h1>
+                    <h1 style="font-size:24px;margin:0 0 20px 0;font-family:Arial,sans-serif;">ENVIO TOKEN</h1>
                     <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;text-align:justify;">Estimado cliente a continuación se le indica su codigo de seguridad:<br>
+                    <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;border: 4px solid red;">TOKEN: <?php echo $datos["token"]; ?></p>
                     <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">DOCUMENTO: <?php echo $datos["document"]; ?></p>
                     <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">RAZON SOCIAL: <?php echo $datos["business_name"]; ?></p>
                     <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">PERSONA RESERVA: <?php echo $datos["receiving_person"]; ?></p>
                     <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">MODELO: <?php echo $datos["model_text"]; ?></p>
-                    <p style="margin:0 0 12px 0;font-size:16px;line-height:24px;font-family:Arial,sans-serif;">CODIGO: <?php echo $datos["token"]; ?></p>
                   </td>
                 </tr>
               </table>
